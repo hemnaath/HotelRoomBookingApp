@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @font-face {
+            font-family: Rounded;
+            src: url(Fonts/rounded.ttf);
+        }
+        body
+        {
+            background-color: white;
+            scroll-behavior: fixed;
+        }
+        .box-model1
+        {
+            background-color: #e6e6e6;
+            width: 700px;
+            border: 1px solid black;
+            padding: 50px;
+            margin: 20px;
+            height:480px;
+            
+        }
+        .box-model2
+        {
+            background-color: lightgrey;
+            width: 290px;
+            height:340px;
+            position:relative;
+            left:830px;
+            top:-533px;
+            border: 1px solid black;
+            padding: 50px;
+            margin: 20px;
+        }
+        .box1-text
+        {
+            font-family: Rounded;
+            font-size: 35px;
+        }
+        .payment-method
+        {
+            text-decoration: none;
+            font-size: 18px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .payment-button
+        {   
+            width:155px;
+            height: 50px; 
+            background-color: black;
+            border-color: black;
+            color:white;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-model1">
+        <label class="box1-text">Payment</label><hr><br><br><br>
+        <label class="payment-method">Card (Credit/Debit)</label><br><br><br><br>
+        <label class="payment-method">UPI</label><br><br><br><br>
+        <label class="payment-method">Wallets</label><br><br><br><br>
+        <label class="payment-method">Cash</label><br><br><br><br>
+        <button type="submit" class="payment-button">Pay Now</button>
+        <div class="box-model2">
+            <label class="box1-text">Bill Calculation</label><hr><br><br>
+            <label class="payment-method">Room Category :</label><br><br>
+            <label class="payment-method">No of Rooms :</label><br><br>
+            <label class="payment-method">Check-in :</label><br><br>
+            <label class="payment-method">Check-out :</label><br><br>
+            <label class="payment-method">Total :</label><br><br>
+            <label class="payment-method">GST(18%) :</label><br><br>
+            <label class="payment-method">Grand Total :</label>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<!-- room category
+no of rooms
+check-in
+check out
+gst(18%)
+grand total -->
+
+
+
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Css/Register.css">
+</head>
+
+<body>
+    <center>
+        <div class="register-box">
+            <div class="register-text">REGISTER</div>
+            <form>
+                <input type="text" id="firstname" class="register-firstname" placeholder="Firstname" required>
+                <input type="text" id="lastname" class="register-lastname" placeholder="Lastname" required><br>
+                <input type="text" id="register_email" class="register-email" placeholder="Email" required><br>
+                <input type="password" id="register_password" class="register-password" placeholder="Password" required>
+                <input type="password" id="register_cpassword" class="register-confirmpassword" placeholder="Confirm Password" required><br>
+                <input type="text" id="phonenumber" class="register-phonenumber" pattern=[0-9]{10} placeholder="Phone Number" required><br>
+                <input type="submit" value="REGISTER" class="register-register">
+            </form>
+        </div>
+    </center>
+</body>
+</html>

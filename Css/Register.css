@@ -1,0 +1,112 @@
+    body
+        {
+            /* background: linear-gradient(to right , #3333ff -50%, #cc00ff 50%); */
+            background: black;
+        }
+    .register-box
+    {
+        width: 60%;
+        height:520px;
+        background-color:white;
+        border-radius:7px; 
+        top: 50px;
+        left: 280px;
+        position:absolute;
+    }
+    .register-text
+    {
+        font-size: 40px;
+        position:relative;
+        top:60px;
+    }
+    .register-firstname
+    {
+        position: relative;
+        top:90px;
+        left:-14px;
+        width:250px;
+        height: 25px;
+        border-color: black;
+        border-left: none;
+        border-right:none;
+        border-top: none;
+        outline: none;
+    }
+    .register-lastname
+    {
+        position: relative;
+        top:90px;
+        left:32px;
+        width:250px;
+        height: 25px;
+        border-color: black;
+        border-left: none;
+        border-right:none;
+        border-top: none;
+        outline: none;
+    }
+    .register-email
+    {
+        position: relative;
+        top:130px;
+        left: -142px;
+        width:250px;
+        height: 25px;
+        border-color: black;
+        border-left: none;
+        border-right:none;
+        border-top: none;
+        outline: none;
+    }
+    .register-password
+    {
+        position: relative;
+        top:170px;
+        left:-12px;
+        width:250px;
+        height: 25px;
+        border-color: black;
+        border-left: none;
+        border-right:none;
+        border-top: none;
+        outline: none;
+    }
+    .register-confirmpassword
+    {
+        position: relative;
+        top:170px;
+        left:35px;
+        width:250px;
+        height: 25px;
+        border-color: black;
+        border-left: none;
+        border-right:none;
+        border-top: none;
+        outline: none;
+    }
+    .register-phonenumber
+    {
+        position:relative;
+        top:210px;
+        left:-140px;
+        width:250px;
+        height: 25px;
+        border-color: black;
+        border-left: none;
+        border-right:none;
+        border-top: none;
+        outline: none;
+    }
+    .register-register
+    {
+        position: relative;
+        top:268px;
+        width:220px;
+        height: 40px; 
+        background-color: black;
+        border-color: black;
+        color:white;
+        font-size: 20px;
+        font-family: 'Times New Roman', Times, serif;
+        cursor: pointer;
+    }

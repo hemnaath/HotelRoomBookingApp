@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Css/Room.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="#">Logout</a>
+        <a href="#">Meeting Halls</a>
+        <a href="#">Rooms</a>
+        <a href="#">Home</a>
+    </div>
+
+    <div class="checkin-deatils">
+        <label for="checkin" class="checkin-label">Check-in Date</label>
+        <label for="checkout" class="checkout-label">Check-out Date</label>
+        <label for="adult" class="adult-label">Adult</label>
+        <label for="children" class="children-label">Children</label>
+        <label for="location" class="location-label">Location</label>
+        <br>
+        <input type="date" id="checkin" class="checkin-box">
+        <input type="date" id="checkout" class="checkout-box">
+        <input type="number" id="adult" class="adult-box">
+        <input type="number" id="children" class="children-box">
+        <input type="text" id="loc" list="location" class="location-box" required>
+        <datalist id="location">
+            <option value="CHN">Chennai</option>
+            <option value="CBE">Coimbatore</option>
+            <option value="MDU">Madurai</option>
+            <option value="SVKS">Sivakasi</option>
+        </datalist>
+        <input type="submit" value="Edit" class="edit-button">
+    </div>
+
+    <div class="box-model">
+        <img src="Images/weddinghall2.jpg">
+
+        <label class="price">Rs.59999/day</label>
+        <button type="submit" class="book-button">BOOK</button>
+
+        <div class="box-box">
+            <h4>Maximum-Capacity : <label value="400">400</label></h4>
+            <h4>Rooms :<label value="2">2</label></h4>
+            <h4>Facility :<label value="Fully Air-Conditioned, Rooms for bride, Dining hall, Chairs for the maximum capacity">Fully Air-Conditioned, Rooms for bride, Dining hall, Chairs for the maximum capacity</label></h4>
+            <h4>Avalibility :<label value="2">2</label></h4>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="box-model">
+        <img src="Images/weddinghall1.jpg">
+
+        <label class="price">Rs.79999/day</label>
+        <button type="submit" class="book-button">BOOK</button>
+
+        <div class="box-box">
+            <h4>Maximum-Capacity : <label value="500">500</label></h4>
+            <h4>Rooms :<label value="2">2</label></h4>
+            <h4>Facility :<label value="Fully Air-Conditioned, Rooms for bride, Dining hall, Chairs for the maximum capacity">Fully Air-Conditioned, Rooms for bride, Dining hall, Chairs for the maximum capacity</label></h4>
+            <h4>Avalibility :<label value="2">2</label></h4>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="box-model">
+        <img src="Images/weddinghall3.jpg">
+
+        <label class="price">Rs.99999/day</label>
+        <button type="submit" class="book-button">BOOK</button>
+
+        <div class="box-box">
+            <h4>Maximum-Capacity : <label value="600">600</label></h4>
+            <h4>Rooms :<label value="2">2</label></h4>
+            <h4>Facility :<label value="Fully Air-Conditioned, Rooms for bride, Dining hall, Chairs for the maximum capacity">Fully Air-Conditioned, Rooms for bride, Dining hall, Chairs for the maximum capacity</label></h4>
+            <h4>Avalibility :<label value="2">2</label></h4>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br>
+    
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @font-face {
+            font-family: Rounded;
+            src: url(Fonts/rounded.ttf);
+        }
+        body
+        {
+            margin:0;
+            overflow-x: hidden;
+        }
+        .navbar
+        {
+            background-color: black;
+            position: fixed;
+            top:0;
+            height:100px;
+            width: 100%;
+            z-index:2;
+        }
+        .navbar a 
+        {
+            float: right;
+            display: block;
+            color:white;
+            text-align: center;
+            padding: 40px;
+            font-size: 17px;
+            text-decoration: none;
+            
+        }
+        .navbar a:hover 
+        {
+            font-size:20px;
+        }
+        .welcome-img
+        {
+            
+            position: static;
+            opacity:0.799;
+            background-size: cover; 
+            width:100%;
+        }
+        
+        .img-text1
+        {
+            font-family: Rounded;
+            color:#676565;
+            position:absolute;
+            font-size: 70px;
+            left:115px;
+            top:100px;
+        }
+        .img-text2
+        {
+            font-family: Rounded;
+            color: #676565;
+            position:absolute;
+            font-size: 70px;
+            left:247px;
+            top:170px;
+        }
+        .checkin-details-box
+        {
+            width: 77%;
+            height:120px;
+            background-color:white;
+            border-radius:7px;
+            top: 565px;
+            left: 155px;
+            position:absolute;
+            box-shadow: 0px 5px 5px grey;
+            z-index: 1;
+        }
+        .back
+        {
+            background: white;
+            height:1475px;
+            position: relative;
+            top: -90px;
+        }
+        .checkin-label
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 13px;
+            position:relative;
+            top:23px;
+            left:20px;
+        }
+        .checkout-label
+        {
+            font-family:'Times New Roman', Times, serif;
+            font-size: 13px;
+            position:relative;
+            top:23px;
+            left:108px;
+        }
+        .adult-label
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 13px;
+            position:relative;
+            top:23px;
+            left:194px;
+        }
+        .children-label
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 13px;
+            position:relative;
+            top:23px;
+            left:342px;
+        }
+        .location-label
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 13px;
+            position:relative;
+            top:23px;
+            left:460px;
+        }
+
+        .checkin-box
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position:relative;
+            top:20px;
+            left:20px;
+            height:22px;
+            width: 136px;
+        }
+        .checkout-box
+        {
+            font-family:'Times New Roman', Times, serif;
+            position:relative;
+            top:20px;
+            left:43px;
+            height:22px;
+            width: 136px;
+            
+        }
+        .adult-box
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position:relative;
+            top:20px;
+            left:70px;
+            height:20px;
+            width: 136px;
+        }
+        .children-box
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position:relative;
+            top:20px;
+            left:105px;
+            height:20px;
+            width: 136px;
+            
+        }
+        .location-box
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position:relative;
+            top:20px;
+            left:121px;
+            height:20px;
+            width: 136px;
+        }
+        .search-button
+        {
+            position: relative;
+            top:23px;
+            left:144px;
+            width:136px;
+            height: 28px; 
+            background-color: black;
+            border-color: black;
+            color: white;
+            font-size: 20px;
+            font-family: 'Times New Roman', Times, serif;
+            cursor: pointer;
+        }
+        .body-text1
+        {
+            font-family: Rounded;
+            font-size: 50px;
+            position:relative;
+            top:135px;
+            left:75px;
+        }
+        .facility-headings1
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:red;
+            position: relative;
+            top:120px;
+            left:75px;
+        }
+        .facility-headings2
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:red;
+            position: relative;
+            top:76px;
+            left:535px;
+        }
+        .facility-headings3
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:red;
+            position: relative;
+            top:34px;
+            left:1000px;
+        }
+        .facility-headings4
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:red;
+            position: relative;
+            top:150px;
+            left:72px;
+        }
+        .facility-headings5
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:red;
+            position: relative;
+            top:106px;
+            left:535px;
+        }
+        .facility-headings6
+        {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+            color:red;
+            position: relative;
+            top:63px;
+            left:1000px;
+        }
+        .facility-content1
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position: relative;
+            top:-90px;
+            left:26px;
+        }
+        .facility-content2
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position: relative;
+            top:-178px;
+            left:487px;
+        }
+        .facility-content3
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position: relative;
+            top:-266px;
+            left:954px;
+        }
+        .facility-content4
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position: relative;
+            top:-185px;
+            left:26px;
+        }
+        .facility-content5
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position: relative;
+            top:-273px;
+            left:486px;
+        }
+        .facility-content6
+        {
+            font-family: 'Times New Roman', Times, serif;
+            position: relative;
+            top:-361px;
+            left:952px;
+        }
+        .body-text2
+        {
+            font-family: Rounded;
+            font-size: 50px;
+            position:relative;
+            top:-345px;
+            left:75px;
+        }
+        .card1
+        {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            width: 250px;
+            margin: auto;
+            text-align: center;
+            position:relative;
+            bottom:370px;
+            right:470px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .card2
+        {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            width: 250px;
+            margin: auto;
+            text-align: center;
+            position:relative;
+            bottom:748px;
+            right:151px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .card3
+        {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            width: 250px;
+            margin: auto;
+            text-align: center;
+            position:relative;
+            bottom:1147px;
+            right:-165px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .card4
+        {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            width: 250px;
+            margin: auto;
+            text-align: center;
+            position:relative;
+            bottom:1542px;
+            right:-488px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .body-text3
+        {
+            font-family: Rounded;
+            font-size: 50px;
+            position:relative;
+            bottom:1530px;
+            left:75px;
+        }
+        .review-card1
+        {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            width: 250px;
+            margin: auto;
+            text-align: center;
+            position:relative;
+            bottom:1542px;
+            right:400px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .review-card2
+        {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            width: 250px;
+            margin: auto;
+            text-align: center;
+            position:relative;
+            bottom:1814px;
+            right:0px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .review-card3
+        {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+            width: 250px;
+            margin: auto;
+            text-align: center;
+            position:relative;
+            bottom:2085px;
+            right:-400px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+       
+    </style>
+
+</head>
+<body>
+    <div class="navbar">
+        
+        
+        
+        <a href="#">Logout</a>
+        <a href="#">Meeting Halls</a>
+        <a href="#">Wedding Halls</a>
+        <a href="#">Rooms</a>
+        
+        
+    </div>
+    
+    
+    
+        <img src="Images/welcomeimg.jpg" class="welcome-img">
+        
+            <p class="img-text1">Stay with us</p>
+            <p class="img-text2">in comfort.</p>
+          
+            <br><br><br>    
+        <div class="checkin-details-box">
+            <label for="checkin" class="checkin-label">Check-in Date</label>
+            <label for="checkout" class="checkout-label">Check-out Date</label>
+            <label for="adult" class="adult-label">Adult</label>
+            <label for="children" class="children-label">Children</label>
+            <label for="location" class="location-label">Location</label>
+            <br>
+            <input type="date" id="checkin" class="checkin-box">
+            <input type="date" id="checkout" class="checkout-box">
+            <input type="number" id="adult" class="adult-box">
+            <input type="number" id="children" class="children-box">
+            <input type="text" id="loc" list="location" class="location-box" required>
+            <datalist id="location">
+                <option value="CHN">Chennai</option>
+                <option value="CBE">Coimbatore</option>
+                <option value="MDU">Madurai</option>
+                <option value="SVKS">Sivakasi</option>
+            </datalist>
+            <input type="submit" value="Search" class="search-button">
+        </div>
+
+        <div class="back">
+            <pre class="body-text1">Facilities & Services</pre>
+
+            <pre class="facility-headings1">Luxury Rooms</pre>
+            <pre class="facility-headings2">Fast & Free Wifi</pre>
+            <pre class="facility-headings3">Call Us 24/7</pre>
+            <pre class="facility-headings4">Travel Accommodation</pre>
+            <pre class="facility-headings5">Accept Card</pre>
+            <pre class="facility-headings6">Restaurant</pre>
+
+            <pre class="facility-content1">
+            Even the all-powerfull pointing has
+            no control abount the blind tests it is
+            an almost unorthographic.
+            </pre>
+            
+            <pre class="facility-content2">
+            Even the all-powerfull pointing has
+            no control abount the blind tests it is
+            an almost unorthographic.
+            </pre>
+            
+            <pre class="facility-content3">
+            Even the all-powerfull pointing has
+            no control abount the blind tests it is
+            an almost unorthographic.
+            </pre>
+            
+            <pre class="facility-content4">
+            Even the all-powerfull pointing has
+            no control abount the blind tests it is
+            an almost unorthographic.
+            </pre>
+            
+            <pre class="facility-content5">
+            Even the all-powerfull pointing has
+            no control abount the blind tests it is
+            an almost unorthographic.
+            </pre>
+            
+            <pre class="facility-content6">
+            Even the all-powerfull pointing has
+            no control abount the blind tests it is
+            an almost unorthographic.
+            </pre>
+            
+
+            <pre class="body-text2">Explore Us</pre>
+
+            <div class="card1">
+                <img src="Images/hotelroom1.jpg" alt="hotel room 1" style="width:100%">
+                <h2>Luxury Rooms</h2>
+                <p style="color: grey;">Rs.6499/night</p>
+                <p>
+                Adults : 1<br>
+                Children : 2<br>
+                Bed Type : Single<br><br><br>
+                </p>
+            </div>
+
+            <div class="card2">
+                <img src="Images/hotelroom2.jpg" alt="hotel room 2" style="width:100%">
+                <h2>Standard Rooms</h2>
+                <p style="color: grey;">Rs.4499/night</p>
+                <p>
+                Adults : 2<br>
+                Children : 2<br>
+                Bed Type : Single<br><br><br>
+                </p>
+            </div>
+
+            <div class="card3">
+                <img src="Images/weddinghall.jpg" alt="wedding hall" style="width:100%">
+                <h2>Wedding Halls</h2>
+                <p style="color: grey;">Rs.59999/day</p>
+                <p>
+                Capacity : 600<br>
+                Rooms : 2<br>
+                <br><br><br><br>
+                </p>
+            </div>
+
+            <div class="card4">
+                <img src="Images/meetinghall.jpg" alt="meeting hall" style="width:100%">
+                <h2>Meeting Halls</h2>
+                <p style="color: grey;">Rs.1999/hr</p>
+                <p>
+                Capacity : 10<br>
+                <br>
+                <br><br><br>
+                </p>
+            </div>
+
+            <pre class="body-text3">Guest Reviews</pre>
+
+            <div class="review-card1"><br>
+                <h3>Vasantha Karuppasamy</h3>
+                <p style="color: grey;">Satisfied Customer</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Soluta ad, ut in reiciendis saepe odit iure laboriosam quasi commodi id minus error eum 
+                quis molestiae explicabo? Doloremque repudiandae numquam quia.<br><br>
+            </p>
+            </div>
+
+            <div class="review-card2"><br>
+                <h3>Navin Vel</h3>
+                <p style="color: grey;">Satisfied Customer</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Soluta ad, ut in reiciendis saepe odit iure laboriosam quasi commodi id minus error eum 
+                quis molestiae explicabo? Doloremque repudiandae numquam quia.<br><br>
+            </p>
+            </div>
+
+            <div class="review-card3"><br>
+                <h3>Gokul Raja</h3>
+                <p style="color: grey;">Satisfied Customer</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                Soluta ad, ut in reiciendis saepe odit iure laboriosam quasi commodi id minus error eum 
+                quis molestiae explicabo? Doloremque repudiandae numquam quia.<br><br>
+            </p>
+            </div>
+
+        </div>
+       
+    
+        
+</body>
+</html>

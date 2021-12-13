@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Css/Room.css">
+</head>
+<body>
+    <div class="navbar">
+        <a href="#">Logout</a>
+        <a href="#">Meeting Halls</a>
+        <a href="#">Wedding Halls</a>
+        <a href="#">Home</a>
+    </div>
+
+    <div class="checkin-deatils">
+        <label for="checkin" class="checkin-label">Check-in Date</label>
+        <label for="checkout" class="checkout-label">Check-out Date</label>
+        <label for="adult" class="adult-label">Adult</label>
+        <label for="children" class="children-label">Children</label>
+        <label for="location" class="location-label">Location</label>
+        <br>
+        <input type="date" id="checkin" class="checkin-box">
+        <input type="date" id="checkout" class="checkout-box">
+        <input type="number" id="adult" class="adult-box">
+        <input type="number" id="children" class="children-box">
+        <input type="text" id="loc" list="location" class="location-box" required>
+        <datalist id="location">
+            <option value="CHN">Chennai</option>
+            <option value="CBE">Coimbatore</option>
+            <option value="MDU">Madurai</option>
+            <option value="SVKS">Sivakasi</option>
+        </datalist>
+        <input type="submit" value="Edit" class="edit-button">
+    </div>
+
+    <div class="box-model">
+        <img src="Images/premium.jpg">
+
+        <label class="price">Rs.8499/night</label>
+        <button type="submit" class="book-button">BOOK</button>
+
+        <div class="box-box">
+            <h4>Category : <label value="premium">Premium</label></h4>
+            <h4>Adult :<label value="2">2</label></h4>
+            <h4>Children :<label value="1">1</label></h4>
+            <h4>Bed Type :<label value="single">Single</label></h4>
+            <h4>Facility :<label value="closet with hangers, flat screen TV, telephone, water heater, balcony">closet with hangers, flat screen TV, telephone, water heater, balcony</label></h4>
+            <h4>Avalibility :<label value="10">10</label></h4>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="box-model">
+        <img src="Images/luxury.jpg">
+
+        <label class="price">Rs.6499/night</label>
+        <button type="submit" class="book-button">BOOK</button>
+
+        <div class="box-box">
+            <h4>Category : <label value="luxury">Luxury</label></h4>
+            <h4>Adult :<label value="4">4</label></h4>
+            <h4>Children :<label value="2">2</label></h4>
+            <h4>Bed Type :<label value="double">Double</label></h4>
+            <h4>Facility :<label value="closet with hangers, flat screen TV, telephone, water heater">Closet with hangers, flat screen TV, telephone, water heater</label></h4>
+            <h4>Avalibility :<label value="10">10</label></h4>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="box-model">
+        <img src="Images/standard.jpg">
+
+        <label class="price">Rs.4499/night</label>
+        <button type="submit" class="book-button">BOOK</button>
+
+        <div class="box-box">
+            <h4>Category :<label value="standard">Standard</label></h4>
+            <h4>Adult :<label value="2">2</label></h4>
+            <h4>Children :<label value="1">1</label></h4>
+            <h4>Bed Type :<label value="single">Single</label></h4>
+            <h4>Facility :<label value="flat screen TV, telephone, water heater">flat screen TV, telephone, water heater</label></h4>
+            <h4>Avalibility :<label value="10">10</label></h4>
+        </div>
+    </div>
+    <br><br>
+
+    <div class="box-model">
+        <img src="Images/budget.jpg">
+
+        <label class="price">Rs.1499/night</label>
+        <button type="submit" class="book-button">BOOK</button>
+
+        <div class="box-box">
+            <h4>Category :<label value="budget">Budget</label></h4>
+            <h4>Adult :<label value="2">2</label></h4>
+            <h4>Children :<label value="0">0</label></h4>
+            <h4>Bed Type :<label value="double">Double</label></h4>
+            <h4>Facility :<label value="telephone, water heater">telephone, water heater</label></h4>
+            <h4>Avalibility :<label value="10">10</label></h4>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br>
+    
+</body>
+</html>

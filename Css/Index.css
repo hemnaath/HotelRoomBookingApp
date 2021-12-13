@@ -1,0 +1,81 @@
+body
+{
+    /* background: linear-gradient(to right , #3333ff -50%, #cc00ff 50%); */
+    background: black;
+}
+.login-box
+{
+    width: 50%;
+    height:520px;
+    background-color:white;
+    border-radius:7px;
+    top: 50px;
+    left: 350px;
+    position:absolute;
+}
+.login-text
+{
+    font-size: 50px;
+    position:relative;
+    top:80px;
+}
+.login-username
+{
+    position: relative;
+    top:120px;
+    width:250px;
+    height: 25px;
+    border-color: black;
+    border-left: none;
+    border-right:none;
+    border-top: none;
+    outline: none;
+}
+.login-password
+{
+    position: relative;
+    top:160px;
+    width:250px;
+    height: 25px;
+    border-color: black;
+    border-left: none;
+    border-right:none;
+    border-top: none;
+    outline:none;
+}
+.login-signin
+{
+    position: relative;
+    top:200px;
+    width:220px;
+    height: 40px; 
+    background-color: black;
+    border-color: black;
+    color: white;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+.login-register
+{
+    position: relative;
+    top:230px;
+    left:57px;
+    width:220px;
+    height: 40px; 
+    background-color: black;
+    border-color: black;
+    color: white;
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    cursor: pointer;
+}
+.forget-label
+{
+    position:relative;
+    top:280px;
+    right:165px;
+    font-size: 15px;
+    font-family:'Times New Roman', Times, serif;
+    text-decoration: none;
+}
