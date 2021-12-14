@@ -1,13 +1,19 @@
 --
 create table guest(
-id int primary key,
+id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 101 primary key,
 firstname varchar2(100) not null,
 lastname varchar2(100) not null,
 email varchar2(100) not null,   
 password varchar2(100) not null,
+confirm_password varchar2(100) not null,
 mobile number(10) not null
 );
 
+select * from guest;
+
+select * from guest;
+truncate table guest;
+drop table guest;
 --
 create table reservation(
 id int primary key,
@@ -101,3 +107,5 @@ id int primary key,
 email varchar2(100) not null,
 password varchar2(100) not null
 );
+
+insert into admin values(1,'admin@tstays.com','web123');
