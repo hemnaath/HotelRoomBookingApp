@@ -26,8 +26,8 @@ public class Guest
 	}
 	@Override
 	public String toString() {
-		return "Guest [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", password="
-				+ password + ", confirmPassword=" + confirmPassword + ", mobileNumber=" + mobileNumber + "]";
+		return "\nfirstName=" + firstName + "\nlastName=" + lastName + "\nemail=" + email + "\npassword="
+				+ password + "\nconfirmPassword=" + confirmPassword + "\nmobileNumber=" + mobileNumber;
 	}
 	@Override
 	public int hashCode() {

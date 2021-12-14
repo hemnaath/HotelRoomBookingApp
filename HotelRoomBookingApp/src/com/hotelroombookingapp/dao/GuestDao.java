@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.hotelroombookingapp.model.Guest;
 
@@ -66,5 +69,47 @@ public class GuestDao {
 		}
 		return g2;
 	}
+	
+	
+	
+	
+	
+	
+	public List<Guest> showAllUser()
+	{
+		List<Guest> guestList = new ArrayList<Guest>();
+		String allUserQuery = "select * from guest";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(allUserQuery);
+			while(rs.next())
+			{
+				Guest guest = new Guest(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),
+						rs.getLong(7));
+				guestList.add(guest);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return guestList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
