@@ -63,16 +63,33 @@ public class Main
 													String rgConfirmPassword = sc.nextLine();
 													if(rgPassword.equals(rgConfirmPassword))
 													{
+														do
+														{
 														System.out.println("Enter Mobile Number");
 														String rgMobileNumber = sc.nextLine();
-														GuestDao guestregisterdao = new GuestDao();
-														Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,rgPassword,
-																rgConfirmPassword,Long.parseLong(rgMobileNumber));
-														System.out.println("Registered Successfully");
-														passwordBreak=1;
-														emailBreak=1;
-														firstNameBreak=1;
-														lastNameBreak=1;
+														if(rgMobileNumber.matches("[0-9]{10}"))
+														{
+															GuestDao guestregisterdao = new GuestDao();
+															Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,rgPassword,
+																	rgConfirmPassword,Long.parseLong(rgMobileNumber));
+															System.out.println("Registered Successfully");
+															passwordBreak=1;
+															emailBreak=1;
+															firstNameBreak=1;
+															lastNameBreak=1;
+															numberBreak=1;
+														}
+														else
+														{
+															System.out.println("enter valid mobile number");
+															numberFlag='y';
+														}
+														if(numberBreak==1)
+														{
+															break;
+														}
+														}while(numberFlag!='n');
+														
 													}	
 													else
 													{
