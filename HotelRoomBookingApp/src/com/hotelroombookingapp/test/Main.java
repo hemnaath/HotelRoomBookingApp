@@ -64,11 +64,10 @@ public class Main
 													if(rgPassword.equals(rgConfirmPassword))
 													{
 														System.out.println("Enter Mobile Number");
-														long rgMobileNumber = Long.parseLong(sc.nextLine());
-														String rgMobile;
+														String rgMobileNumber = sc.nextLine();
 														GuestDao guestregisterdao = new GuestDao();
 														Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,rgPassword,
-																rgConfirmPassword,rgMobileNumber);
+																rgConfirmPassword,Long.parseLong(rgMobileNumber));
 														System.out.println("Registered Successfully");
 														passwordBreak=1;
 														emailBreak=1;
