@@ -11,15 +11,16 @@ public class Main
 	public static void main(String args[])
 	{
 		Scanner sc = new Scanner(System.in);
-		char logoutFlag='n';
-		char insertRoomFlag='n';
-		char deleteRoomFlag='n';
-		char updateRoomFlag='n';
+		boolean flag=true;
+		boolean flag2=true;
+		char passwordFlag='n';
 		
-		do 
-		{
+		while(flag2){
+	
 			System.out.println("1.USER"+"\n"+"2.ADMIN");
 			int choice = Integer.parseInt(sc.nextLine());
+			
+			
 		
 			switch(choice)
 			{
@@ -31,6 +32,7 @@ public class Main
 					switch(userchoice)
 					{
 						case 1:
+							
 							System.out.println("REGISTER PAGE");
 							System.out.println("Enter Firstname");
 							String rgFirstname = sc.nextLine();
@@ -41,21 +43,31 @@ public class Main
 							System.out.println("Enter Email");
 							String rgMail = sc.nextLine();
 				
+							do {
 							System.out.println("Enter Password");
 							String rgPassword = sc.nextLine();
 				
 							System.out.println("Confirm Password");
 							String rgConfirmPassword = sc.nextLine();
-				
-							System.out.println("Enter Mobile Number");
-							long rgMobileNumber = Long.parseLong(sc.nextLine());
-				
-							GuestDao guestregisterdao = new GuestDao();
-							Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,rgPassword,rgConfirmPassword,
-									rgMobileNumber);
-				
-		
-							System.out.println("Registered Successfully");
+							
+							if(rgPassword.equals(rgConfirmPassword))
+							{
+								System.out.println("Enter Mobile Number");
+								long rgMobileNumber = Long.parseLong(sc.nextLine());
+					
+								GuestDao guestregisterdao = new GuestDao();
+								Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,rgPassword,rgConfirmPassword,
+										rgMobileNumber);
+								System.out.println("Registered Successfully");
+								passwordFlag='n';
+								
+							}
+							else
+							{
+								System.out.println("password mismatch");
+								passwordFlag='y';
+							}
+					}while(passwordFlag!='n');
 				
 				
 				
@@ -73,7 +85,7 @@ public class Main
 							Guest g2=gdao2.loginGuest(lgMail, lgPassword);
 							System.out.println("Welcome "+g2.getFirstName());
 							
-							do {
+							while(flag){
 							System.out.println("1.book\n2.cancel\n3.update\n4.logout");
 							int userOption = Integer.parseInt(sc.nextLine());
 							
@@ -81,21 +93,18 @@ public class Main
 							{
 								case 1:
 									System.out.println(" insert room book");
-									insertRoomFlag='y';
 									break;
 								case 2:
 									System.out.println("delete booked room");
-									deleteRoomFlag='y';
 									break;
 								case 3:
 									System.out.println("update booked rooms");
-									updateRoomFlag='y';
 									break;
 								case 4:
-									logoutFlag='y';
+									flag=false;
 									break;
 							}
-							}while(insertRoomFlag!='n' || deleteRoomFlag!='n' || updateRoomFlag!='n');
+							}
 							
 							break;
 							
@@ -112,7 +121,7 @@ public class Main
 				break;
 			}
 		
-		}while(logoutFlag!='n');
+		}
 		
 		
 	}
