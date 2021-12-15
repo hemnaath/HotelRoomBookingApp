@@ -16,6 +16,8 @@ public class Main
 		int emailBreak=0;
 		int firstNameBreak=0;
 		int passwordBreak=0;
+		char confirmFlag='n';
+		int confirmBreak=0;
 		int numberBreak=0;
 		char numberFlag='n';
 		int lastNameBreak=0;
@@ -59,41 +61,54 @@ public class Main
 												{
 													System.out.println("Enter Password");
 													String rgPassword = sc.nextLine();
-													System.out.println("Confirm Password");
-													String rgConfirmPassword = sc.nextLine();
-													if(rgPassword.equals(rgConfirmPassword))
+													if(rgPassword.matches("[A-Z]+[a-z]+[0-9]+"))
 													{
-														do
+														System.out.println("Confirm Password");
+														String rgConfirmPassword = sc.nextLine();
+														if(rgPassword.equals(rgConfirmPassword))
 														{
-														System.out.println("Enter Mobile Number");
-														String rgMobileNumber = sc.nextLine();
-														if(rgMobileNumber.matches("[0-9]{10}"))
-														{
-															GuestDao guestregisterdao = new GuestDao();
-															Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,rgPassword,
-																	rgConfirmPassword,Long.parseLong(rgMobileNumber));
-															System.out.println("Registered Successfully");
-															passwordBreak=1;
-															emailBreak=1;
-															firstNameBreak=1;
-															lastNameBreak=1;
-															numberBreak=1;
-														}
-														else
-														{
-															System.out.println("enter valid mobile number");
-															numberFlag='y';
-														}
-														if(numberBreak==1)
-														{
-															break;
-														}
-														}while(numberFlag!='n');
+															do
+															{
+															System.out.println("Enter Mobile Number");
+															String rgMobileNumber = sc.nextLine();
+															if(rgMobileNumber.matches("[0-9]{10}"))
+															{
+																GuestDao guestregisterdao = new GuestDao();
+																Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,rgPassword,
+																		rgConfirmPassword,Long.parseLong(rgMobileNumber));
+																System.out.println("Registered Successfully");
+																passwordBreak=1;
+																emailBreak=1;
+																firstNameBreak=1;
+																lastNameBreak=1;
+																numberBreak=1;
+																confirmBreak=1;
+															}
+															else
+															{
+																System.out.println("enter valid mobile number");
+																numberFlag='y';
+															}
+															if(numberBreak==1)
+															{
+																break;
+															}
+															}while(numberFlag!='n');
+													}
+													else
+													{
+														System.out.println("password mismatch");
+														confirmFlag='y';
+													}
+													if(confirmBreak==1)
+													{
+														break;
+													}
 														
 													}	
 													else
 													{
-														System.out.println("password mismatch");
+														System.out.println("password must contain atleast one capital letter, one small letter, one digits");
 														passwordFlag='y';
 													}
 													if(passwordBreak==1)

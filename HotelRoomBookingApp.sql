@@ -5,7 +5,6 @@ firstname varchar2(100) not null,
 lastname varchar2(100) not null,
 email varchar2(100) not null,   
 password varchar2(100) not null,
-confirm_password varchar2(100) not null,
 mobile number(10) not null
 );
 

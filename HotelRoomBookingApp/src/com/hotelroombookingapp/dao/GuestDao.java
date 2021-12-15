@@ -17,7 +17,7 @@ public class GuestDao {
 	public Guest registerGuest(String rgFirstname,String rgLastname,String rgMail,String rgPassword,String rgConfirmPassword,
 			long rgMobileNumber)
 	{
-		String registerquery = "insert into guest(firstname,lastname,email,password,confirm_password,mobile) values (?,?,?,?,?,?)";
+		String registerquery = "insert into guest(firstname,lastname,email,password,mobile) values (?,?,?,?,?)";
 		Connection conn = ConnectionUtil.getDbConnection();
 		 
 		Guest g1=null;
@@ -29,8 +29,7 @@ public class GuestDao {
 			p.setString(2, rgLastname);
 			p.setString(3, rgMail);
 			p.setString(4, rgPassword);
-			p.setString(5, rgConfirmPassword);
-			p.setLong(6, rgMobileNumber);
+			p.setLong(5, rgMobileNumber);
 			
 			p.executeUpdate();
 			
@@ -59,8 +58,7 @@ public class GuestDao {
 			ResultSet rs1 = p2.executeQuery();
 			while(rs1.next())
 			{
-				g2 = new Guest(rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getString(6),
-						rs1.getLong(7));
+				g2 = new Guest(rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getLong(6));
 			}
 		}
 		catch(Exception e)
@@ -86,8 +84,7 @@ public class GuestDao {
 			ResultSet rs = stmt.executeQuery(allUserQuery);
 			while(rs.next())
 			{
-				Guest guest = new Guest(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),
-						rs.getLong(7));
+				Guest guest = new Guest(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getLong(6));
 				guestList.add(guest);
 			}
 			

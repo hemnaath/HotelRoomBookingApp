@@ -8,16 +8,14 @@ public class Guest
 	private String lastName;
 	private String email;
 	private String password;
-	private String confirmPassword;
 	private long mobileNumber;
-	public Guest(String firstName, String lastName, String email, String password, String confirmPassword,
-			long mobileNumber) {
+	public Guest(String firstName, String lastName, String email, String password,long mobileNumber) 
+	{
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.confirmPassword = confirmPassword;
 		this.mobileNumber = mobileNumber;
 	}
 	public Guest() {
@@ -27,11 +25,11 @@ public class Guest
 	@Override
 	public String toString() {
 		return "\nfirstName=" + firstName + "\nlastName=" + lastName + "\nemail=" + email + "\npassword="
-				+ password + "\nconfirmPassword=" + confirmPassword + "\nmobileNumber=" + mobileNumber;
+				+ password + "\nmobileNumber=" + mobileNumber;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(confirmPassword, email, firstName, lastName, mobileNumber, password);
+		return Objects.hash(email, firstName, lastName, mobileNumber, password);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -42,8 +40,7 @@ public class Guest
 		if (getClass() != obj.getClass())
 			return false;
 		Guest other = (Guest) obj;
-		return Objects.equals(confirmPassword, other.confirmPassword) && Objects.equals(email, other.email)
-				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
+		return Objects.equals(email, other.email)&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
 				&& mobileNumber == other.mobileNumber && Objects.equals(password, other.password);
 	}
 	public String getFirstName() {
@@ -69,12 +66,6 @@ public class Guest
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	public String getConfirmPassword() {
-		return confirmPassword;
-	}
-	public void setConfirmPassword(String confirmPassword) {
-		this.confirmPassword = confirmPassword;
 	}
 	public long getMobileNumber() {
 		return mobileNumber;
