@@ -92,7 +92,7 @@ public class Main
 									updateRoomFlag='y';
 									break;
 								case 4:
-//									logoutFlag='y';
+									logoutFlag='y';
 									break;
 							}
 							}while(insertRoomFlag!='n' || deleteRoomFlag!='n' || updateRoomFlag!='n');
@@ -112,7 +112,7 @@ public class Main
 				break;
 			}
 		
-		}while(logoutFlag=='n');
+		}while(logoutFlag!='n');
 		
 		
 	}
