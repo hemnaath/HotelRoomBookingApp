@@ -4,38 +4,27 @@ import java.util.Objects;
 
 public class Admin 
 {
-	private int id;
 	private String email;
 	private String password;
-	
-	public Admin(int id, String email, String password) 
-	{
+	public Admin(String email, String password) {
 		super();
-		this.id = id;
 		this.email = email;
 		this.password = password;
 	}
-	
-	public Admin() 
-	{
+	public Admin() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
 	@Override
-	public String toString() 
-	{
-		return "Admin [id=" + id + "\nemail=" + email + "\npassword=" + password + "]";
+	public String toString() {
+		return "Admin [email=" + email + ", password=" + password + "]";
 	}
-	
 	@Override
-	public int hashCode() 
-	{
-		return Objects.hash(email, id, password);
+	public int hashCode() {
+		return Objects.hash(email, password);
 	}
-	
 	@Override
-	public boolean equals(Object obj) 
-	{
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -43,14 +32,7 @@ public class Admin
 		if (getClass() != obj.getClass())
 			return false;
 		Admin other = (Admin) obj;
-		return Objects.equals(email, other.email) && id == other.id && Objects.equals(password, other.password);
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
+		return Objects.equals(email, other.email) && Objects.equals(password, other.password);
 	}
 	public String getEmail() {
 		return email;
@@ -64,5 +46,7 @@ public class Admin
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 	
 }

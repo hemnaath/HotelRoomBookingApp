@@ -56,6 +56,7 @@ public class GuestDao {
 			p2.setString(1, gUserName);
 			p2.setString(2, gPassword);
 			ResultSet rs1 = p2.executeQuery();
+//			System.out.println(rs1.getString(2));
 			while(rs1.next())
 			{
 				g2 = new Guest(rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getLong(6));

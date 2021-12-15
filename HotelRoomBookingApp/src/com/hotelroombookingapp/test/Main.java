@@ -3,7 +3,9 @@ package com.hotelroombookingapp.test;
 import java.util.List;
 import java.util.Scanner;
 
+import com.hotelroombookingapp.model.Admin;
 import com.hotelroombookingapp.model.Guest;
+import com.hotelroombookingapp.dao.AdminDao;
 import com.hotelroombookingapp.dao.GuestDao;
 
 public class Main 
@@ -27,7 +29,7 @@ public class Main
 		char firstNameFlag='n';
 		while(flag2)
 		{
-			System.out.println("1.USER"+"\n"+"2.ADMIN");
+			System.out.println("1.USER\n2.ADMIN");
 			int choice = Integer.parseInt(sc.nextLine());
 			switch(choice)
 			{
@@ -55,7 +57,7 @@ public class Main
 										{
 											System.out.println("Enter Email");
 											String rgMail = sc.nextLine();
-											if(rgMail.matches("[a-zA-Z0-9]+[@][a-z]+[.][a-z]+"))
+											if(rgMail.matches("[a-zA-Z0-9]+[@][a-z]+[.][a-z]{2,3}"))
 											{
 												do 
 												{
@@ -160,6 +162,9 @@ public class Main
 								String lgPassword=sc.nextLine();
 								GuestDao gdao2 = new GuestDao();
 								Guest g2=gdao2.loginGuest(lgMail, lgPassword);
+								//if(lgMail.equals(g2.getEmail()) && lgPassword.equals(g2.getPassword())) 
+								if(g2!=null)
+								{
 								System.out.println("Welcome "+g2.getFirstName());							
 								while(flag)
 								{
@@ -181,17 +186,47 @@ public class Main
 											break;
 									}
 								}
+								}
+								else {
+									System.out.println("Invalid username or password");
+								}
 								break;
 							}
 						break;
 					case 2:
-						GuestDao gdao3 = new GuestDao();
-						List<Guest> guestList = gdao3.showAllUser();
-						for(int i=0;i<guestList.size();i++)
+						
+						System.out.println("Enter Email-id");
+						String adminMail = sc.nextLine();
+						System.out.println("Enter Password");
+						String adminPassword = sc.nextLine();
+						AdminDao adao = new AdminDao();
+						Admin a2=adao.loginAdmin(adminMail, adminPassword);
+						if(a2!=null)
 						{
-							System.out.println(guestList.get(i));
+							System.out.println("Welcome Admin");
+							System.out.println("1.List all Guests");
+							int adminChoice = Integer.parseInt(sc.nextLine());
+							switch(adminChoice)
+							{
+								case 1:
+//									list all user
+									GuestDao gdao3 = new GuestDao();
+									List<Guest> guestList = gdao3.showAllUser();
+									for(int i=0;i<guestList.size();i++)
+									{
+										System.out.println(guestList.get(i));
+									}
+									break;
+							}
 						}
-						break;
+						else
+						{
+							System.out.println("invalid username or password");
+						}
+						
+						
+						
+						
 			}
 		}
 	}

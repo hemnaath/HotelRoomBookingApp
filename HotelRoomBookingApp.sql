@@ -3,12 +3,10 @@ create table guest(
 id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 101 primary key,
 firstname varchar2(100) not null,
 lastname varchar2(100) not null,
-email varchar2(100) not null,   
+email varchar2(100) unique,   
 password varchar2(100) not null,
 mobile number(10) not null
 );
-
-select * from guest;
 
 select * from guest;
 truncate table guest;
@@ -101,9 +99,9 @@ foreign key (guest_id) references guest (id)
 );
 
 --
-create table admin(
-id int primary key,
-email varchar2(100) not null,
+create table hoteladmin(
+id int GENERATED ALWAYS AS IDENTITY START WITH 1 primary key,
+email varchar2(100) unique,
 password varchar2(100) not null
 );
 
