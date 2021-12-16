@@ -14,9 +14,9 @@ drop table guest;
 --
 --/*--
 create table reservation_details(
-id int primary key,
-check_in varchar2(100) not null,
-chech_out varchar2(100) not null,
+id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 1001 primary key,
+check_in date not null,
+check_out date not null,
 made_by varchar2(100) not null,
 booking varchar2(100) not null,
 category varchar2(100) NOT null,
@@ -24,6 +24,8 @@ location varchar2(100) not null,
 guest_id int not null,
 foreign key (guest_id) references guest (id)
 );
+
+drop table reservation CASCADE CONSTRAINTS;
 --
 --/*--
 create table room_details(
@@ -43,8 +45,8 @@ check_out varchar2(100) not null,
 room_number int not null,
 room_id int not null,
 reservation_details_id int not null,
-foreign key (room_id) references room (id),
-foreign key (reservation_details_id) references reservation (id)
+foreign key (room_id) references room_details(id),
+foreign key (reservation_details_id) references reservation_details(id)
 );
 
 --
@@ -64,7 +66,7 @@ check_out varchar2(100) not null,
 wedding_hall_number int not null,
 wedding_hall_id int not null,
 reservation_details_id int not null,
-foreign key (wedding_hall_id) references wedding_hall (id),
+foreign key (wedding_hall_id) references wedding_hall_details (id),
 foreign key (reservation_details_id) references reservation_details (id)
 );
 
@@ -85,7 +87,7 @@ check_out varchar2(100),
 meeting_hall_number int,
 meeting_hall_id int,
 reservation_details_id int,
-foreign key (meeting_hall_id) references meeting_hall (id),
+foreign key (meeting_hall_id) references meeting_hall_details (id),
 foreign key (reservation_details_id) references reservation_details (id)
 );
 

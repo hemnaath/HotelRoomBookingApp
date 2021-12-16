@@ -7,6 +7,7 @@ import com.hotelroombookingapp.model.Admin;
 import com.hotelroombookingapp.model.Guest;
 import com.hotelroombookingapp.dao.AdminDao;
 import com.hotelroombookingapp.dao.GuestDao;
+import com.hotelroombookingapp.dao.ReservationDao;
 
 public class Main 
 {
@@ -174,7 +175,8 @@ public class Main
 									switch(userOption)
 									{
 										case 1:
-											System.out.println("Book Room");
+											ReservationDao reserveDao = new ReservationDao();
+											reserveDao.bookRoom(g2);
 											break;
 										case 2:
 											System.out.println("delete booked room");

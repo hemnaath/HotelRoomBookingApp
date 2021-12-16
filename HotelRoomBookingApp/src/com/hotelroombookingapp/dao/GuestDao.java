@@ -17,7 +17,7 @@ public class GuestDao {
 	public Guest registerGuest(String rgFirstname,String rgLastname,String rgMail,String rgPassword,String rgConfirmPassword,
 			long rgMobileNumber)
 	{
-		String registerquery = "insert into guest(firstname,lastname,email,password,mobile) values (?,?,?,?,?)";
+		String registerquery = "insert into guest_details (firstname,lastname,email,password,mobile) values (?,?,?,?,?)";
 		Connection conn = ConnectionUtil.getDbConnection();
 		 
 		Guest g1=null;
@@ -46,10 +46,10 @@ public class GuestDao {
 	
 	public Guest loginGuest(String gUserName,String gPassword)
 	{
-		String loginquery = "select * from guest where email=? and password=?";
+		String loginquery = "select * from guest_details where email=? and password=?";
 		Connection conn = ConnectionUtil.getDbConnection();
 		
-		Guest g2=null;
+		Guest guestObj=null;
 		try
 		{
 			PreparedStatement p2 = conn.prepareStatement(loginquery);
@@ -59,18 +59,43 @@ public class GuestDao {
 //			System.out.println(rs1.getString(2));
 			while(rs1.next())
 			{
-				g2 = new Guest(rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getLong(6));
+				guestObj = new Guest(rs1.getString(2),rs1.getString(3),rs1.getString(4),rs1.getString(5),rs1.getLong(6));
 			}
 		}
 		catch(Exception e)
 		{ 	
 			e.printStackTrace();
 		}
-		return g2;
+		return guestObj;
 	}
 	
 	
-	
+	public int findGuestId(Guest guestObj) 
+	{
+		int guestId=0;
+		try
+		{
+			String findIdQuery="select id from guest_details where email=?";
+			Connection conn = ConnectionUtil.getDbConnection();
+			PreparedStatement pstmt = conn.prepareStatement(findIdQuery);
+			pstmt.setString(1, guestObj.getEmail());
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next())
+			{
+				guestId = rs.getInt(1);
+//				System.out.println(guestId);
+			}
+			else
+			{
+				System.out.println("guest not found");
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+			return guestId;
+	}
 	
 	
 	
