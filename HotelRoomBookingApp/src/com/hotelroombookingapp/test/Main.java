@@ -49,98 +49,98 @@ public class Main
 								{
 									do
 									{
-									System.out.println("Enter Lastname");
-									String rgLastname = sc.nextLine();
-									if(rgLastname.matches("[a-zA-Z]{3,}"))
-									{
-										do 
+										System.out.println("Enter Lastname");
+										String rgLastname = sc.nextLine();
+										if(rgLastname.matches("[a-zA-Z]{3,}"))
 										{
-											System.out.println("Enter Email");
-											String rgMail = sc.nextLine();
-											if(rgMail.matches("[a-zA-Z0-9]+[@][a-z]+[.][a-z]{2,3}"))
+											do 
 											{
-												do 
+												System.out.println("Enter Email");
+												String rgMail = sc.nextLine();
+												if(rgMail.matches("[a-zA-Z0-9]+[@][a-z]+[.][a-z]{2,3}"))
 												{
-													System.out.println("Enter Password");
-													String rgPassword = sc.nextLine();
-													if(rgPassword.matches("[A-Z]+[a-z]+[0-9]+"))
+													do 
 													{
-														System.out.println("Confirm Password");
-														String rgConfirmPassword = sc.nextLine();
-														if(rgPassword.equals(rgConfirmPassword))
+														System.out.println("Enter Password");
+														String rgPassword = sc.nextLine();
+														if(rgPassword.matches("[A-Z]+[a-z]+[0-9]+"))
 														{
-															do
+															System.out.println("Confirm Password");
+															String rgConfirmPassword = sc.nextLine();
+															if(rgPassword.equals(rgConfirmPassword))
 															{
-															System.out.println("Enter Mobile Number");
-															String rgMobileNumber = sc.nextLine();
-															if(rgMobileNumber.matches("[0-9]{10}"))
-															{
-																GuestDao guestregisterdao = new GuestDao();
-																Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,rgPassword,
+																do
+																{
+																	System.out.println("Enter Mobile Number");
+																	String rgMobileNumber = sc.nextLine();
+																	if(rgMobileNumber.matches("[0-9]{10}"))
+																	{
+																		GuestDao guestregisterdao = new GuestDao();
+																		Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,
+																				rgPassword,
 																		rgConfirmPassword,Long.parseLong(rgMobileNumber));
-																System.out.println("Registered Successfully");
-																passwordBreak=1;
-																emailBreak=1;
-																firstNameBreak=1;
-																lastNameBreak=1;
-																numberBreak=1;
-																confirmBreak=1;
+																		System.out.println("Registered Successfully");
+																		passwordBreak=1;
+																		emailBreak=1;
+																		firstNameBreak=1;
+																		lastNameBreak=1;
+																		numberBreak=1;
+																		confirmBreak=1;
+																	}
+																	else
+																	{
+																		System.out.println("enter valid mobile number");
+																		numberFlag='y';
+																	}
+																	if(numberBreak==1)
+																	{
+																		break;
+																	}
+																}while(numberFlag!='n');
 															}
 															else
 															{
-																System.out.println("enter valid mobile number");
-																numberFlag='y';
+																System.out.println("password mismatch");
+																confirmFlag='y';
 															}
-															if(numberBreak==1)
+															if(confirmBreak==1)
 															{
 																break;
 															}
-															}while(numberFlag!='n');
-													}
-													else
-													{
-														System.out.println("password mismatch");
-														confirmFlag='y';
-													}
-													if(confirmBreak==1)
-													{
-														break;
-													}
-														
-													}	
-													else
-													{
-														System.out.println("password must contain atleast one capital letter, one small letter, one digits");
-														passwordFlag='y';
-													}
-													if(passwordBreak==1)
-													{
-														break;
-													}
-												}while(passwordFlag!='n');
-											}
-											else
-											{
-												System.out.println("Enter a valid e-mail");
-												emailFlag='y';
-											}
-											if(emailBreak==1) 
-											{
-												break;
-											}
-										}while(emailFlag!='n');
-									}
-									else
-									{
-										System.out.println("Enter a valid name");
-										lastNameFlag='y';
-									}
-									if(lastNameBreak==1)
-									{
-										break;
-									}
-								}while(lastNameFlag!='n');
-									
+														}	
+														else
+														{
+															System.out.println("password must contain atleast one capital letter, "
+																	+ "one small letter, one digits");
+															passwordFlag='y';
+														}
+														if(passwordBreak==1)
+														{
+															break;
+														}
+													}while(passwordFlag!='n');
+												}
+												else
+												{
+													System.out.println("Enter a valid e-mail");
+													emailFlag='y';
+												}
+												if(emailBreak==1) 
+												{
+													break;
+												}
+											}while(emailFlag!='n');
+										}
+										else
+										{
+											System.out.println("Enter a valid name");
+											lastNameFlag='y';
+										}
+										if(lastNameBreak==1)
+										{
+											break;
+										}
+									}while(lastNameFlag!='n');
 								}
 								else
 								{
@@ -152,19 +152,20 @@ public class Main
 									break;
 								}
 							}while(firstNameFlag!='n');
+//							System.out.flush();1
 							
-							case 2:
-								//Login Guest
-								System.out.println("LOGIN PAGE");
-								System.out.println("Enter Email");
-								String lgMail=sc.nextLine();
-								System.out.println("Enter Password");
-								String lgPassword=sc.nextLine();
-								GuestDao gdao2 = new GuestDao();
-								Guest g2=gdao2.loginGuest(lgMail, lgPassword);
-								//if(lgMail.equals(g2.getEmail()) && lgPassword.equals(g2.getPassword())) 
-								if(g2!=null)
-								{
+						case 2:
+							//Login Guest
+							System.out.println("LOGIN PAGE");
+							System.out.println("Enter Email");
+							String lgMail=sc.nextLine();
+							System.out.println("Enter Password");
+							String lgPassword=sc.nextLine();
+							GuestDao gdao2 = new GuestDao();
+							Guest g2=gdao2.loginGuest(lgMail, lgPassword);
+							//if(lgMail.equals(g2.getEmail()) && lgPassword.equals(g2.getPassword())) 
+							if(g2!=null)
+							{
 								System.out.println("Welcome "+g2.getFirstName());							
 								while(flag)
 								{
@@ -173,7 +174,7 @@ public class Main
 									switch(userOption)
 									{
 										case 1:
-											System.out.println(" insert room book");
+											System.out.println("Book Room");
 											break;
 										case 2:
 											System.out.println("delete booked room");
@@ -186,47 +187,43 @@ public class Main
 											break;
 									}
 								}
-								}
-								else {
-									System.out.println("Invalid username or password");
-								}
-								break;
 							}
-						break;
-					case 2:
-						
-						System.out.println("Enter Email-id");
-						String adminMail = sc.nextLine();
-						System.out.println("Enter Password");
-						String adminPassword = sc.nextLine();
-						AdminDao adao = new AdminDao();
-						Admin a2=adao.loginAdmin(adminMail, adminPassword);
-						if(a2!=null)
-						{
-							System.out.println("Welcome Admin");
-							System.out.println("1.List all Guests");
-							int adminChoice = Integer.parseInt(sc.nextLine());
-							switch(adminChoice)
+							else
 							{
-								case 1:
-//									list all user
-									GuestDao gdao3 = new GuestDao();
-									List<Guest> guestList = gdao3.showAllUser();
-									for(int i=0;i<guestList.size();i++)
-									{
-										System.out.println(guestList.get(i));
-									}
-									break;
+								System.out.println("Invalid username or password");
 							}
-						}
-						else
+							break;
+					}
+					break;
+				case 2:						
+					System.out.println("Enter Email-id");
+					String adminMail = sc.nextLine();
+					System.out.println("Enter Password");
+					String adminPassword = sc.nextLine();
+					AdminDao adao = new AdminDao();
+					Admin a2=adao.loginAdmin(adminMail, adminPassword);
+					if(a2!=null)
+					{
+						System.out.println("Welcome Admin");
+						System.out.println("1.List all Guests");
+						int adminChoice = Integer.parseInt(sc.nextLine());
+						switch(adminChoice)
 						{
-							System.out.println("invalid username or password");
+						case 1:
+							//list all user
+							GuestDao gdao3 = new GuestDao();
+							List<Guest> guestList = gdao3.showAllUser();
+							for(int i=0;i<guestList.size();i++)
+							{
+								System.out.println(guestList.get(i));
+							}
+							break;
 						}
-						
-						
-						
-						
+					}
+					else
+					{
+						System.out.println("invalid username or password");
+					}												
 			}
 		}
 	}

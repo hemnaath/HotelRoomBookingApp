@@ -105,4 +105,7 @@ email varchar2(100) unique,
 password varchar2(100) not null
 );
 
+select * from hoteladmin;
+insert into hoteladmin(email,password) values('admin@tstays.com','web123');
+
 insert into admin values(1,'admin@tstays.com','web123');
