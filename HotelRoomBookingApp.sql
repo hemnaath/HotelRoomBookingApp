@@ -12,50 +12,48 @@ select * from guest;
 truncate table guest;
 drop table guest;
 --
+--/*--
 create table reservation_details(
 id int primary key,
 check_in varchar2(100) not null,
 chech_out varchar2(100) not null,
 made_by varchar2(100) not null,
 booking varchar2(100) not null,
+category varchar2(100) NOT null,
 location varchar2(100) not null,
 guest_id int not null,
 foreign key (guest_id) references guest (id)
 );
-
 --
-create table room_type(
-id int primary key,
-category varchar2(100) not null,
-capacity int not null
-);
-
---
+--/*--
 create table room_details(
 id int primary key,
 total_rooms int not null,
 availible int not null,
-room_type_id int not null,
-foreign key (room_type_id) references room_type (id)
+reservation_details_id int not null,
+foreign key (reservation_details_id) references reservation_details (id)
 );
 
 --
+--/*--
 create table occupied_rooms(
 id int primary key,
 check_in varchar2(100) not null,
 check_out varchar2(100) not null,
 room_number int not null,
 room_id int not null,
-reservation_id int not null,
+reservation_details_id int not null,
 foreign key (room_id) references room (id),
-foreign key (reservation_id) references reservation (id)
+foreign key (reservation_details_id) references reservation (id)
 );
 
 --
 create table wedding_hall_details(
 id int primary key,
 total_wedding_halls int not null,
-availible int not null
+availible int not null,
+reservation_details_id int not null,
+foreign key (reservation_details_id) references reservation_details (id)
 );
 
 --
@@ -65,16 +63,18 @@ check_in varchar2(100) not null,
 check_out varchar2(100) not null,
 wedding_hall_number int not null,
 wedding_hall_id int not null,
-reservation_id int not null,
+reservation_details_id int not null,
 foreign key (wedding_hall_id) references wedding_hall (id),
-foreign key (reservation_id) references reservation (id)
+foreign key (reservation_details_id) references reservation_details (id)
 );
 
 --
 create table meeting_hall_details(
 id int primary key,
 total_meeting_halls int,
-availbility int
+availbility int,
+reservation_details_id int not null,
+foreign key (reservation_details_id) references reservation_details (id)
 );
 
 --
@@ -84,9 +84,9 @@ check_in varchar2(100),
 check_out varchar2(100),
 meeting_hall_number int,
 meeting_hall_id int,
-reservation_id int,
+reservation_details_id int,
 foreign key (meeting_hall_id) references meeting_hall (id),
-foreign key (reservation_id) references reservation (id)
+foreign key (reservation_details_id) references reservation_details (id)
 );
 
 --

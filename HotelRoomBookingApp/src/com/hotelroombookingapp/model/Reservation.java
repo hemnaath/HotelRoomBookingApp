@@ -9,30 +9,37 @@ public class Reservation
 	private String checkOut;
 	private String madeBy;
 	private String booking;
+	private String category;
 	private String location;
 	private Guest guest;
-	
-	public Reservation(int id, String checkIn, String checkOut, String madeBy, String booking, String location, Guest guest) 
-	{
+	public Reservation(int id, String checkIn, String checkOut, String madeBy, String booking, String category,
+			String location, Guest guest) {
 		super();
 		this.id = id;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 		this.madeBy = madeBy;
 		this.booking = booking;
+		this.category = category;
 		this.location = location;
 		this.guest = guest;
 	}
-	
-	@Override
-	public int hashCode() 
-	{
-		return Objects.hash(booking, checkIn, checkOut, guest, id, madeBy, location);
+	public Reservation() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-	
 	@Override
-	public boolean equals(Object obj) 
-	{
+	public String toString() {
+		return "Reservation [id=" + id + ", checkIn=" + checkIn + ", checkOut=" + checkOut + ", madeBy=" + madeBy
+				+ ", booking=" + booking + ", category=" + category + ", location=" + location + ", guest=" + guest
+				+ "]";
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(booking, category, checkIn, checkOut, guest, id, location, madeBy);
+	}
+	@Override
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -40,11 +47,11 @@ public class Reservation
 		if (getClass() != obj.getClass())
 			return false;
 		Reservation other = (Reservation) obj;
-		return Objects.equals(booking, other.booking) && Objects.equals(checkIn, other.checkIn)
-				&& Objects.equals(checkOut, other.checkOut) && Objects.equals(guest, other.guest) && id == other.id
-				&& Objects.equals(madeBy, other.madeBy) && Objects.equals(location, other.location);
+		return Objects.equals(booking, other.booking) && Objects.equals(category, other.category)
+				&& Objects.equals(checkIn, other.checkIn) && Objects.equals(checkOut, other.checkOut)
+				&& Objects.equals(guest, other.guest) && id == other.id && Objects.equals(location, other.location)
+				&& Objects.equals(madeBy, other.madeBy);
 	}
-	
 	public int getId() {
 		return id;
 	}
@@ -75,11 +82,11 @@ public class Reservation
 	public void setBooking(String booking) {
 		this.booking = booking;
 	}
-	public Guest getGuest() {
-		return guest;
+	public String getCategory() {
+		return category;
 	}
-	public void setGuest(Guest guest) {
-		this.guest = guest;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 	public String getLocation() {
 		return location;
@@ -87,15 +94,12 @@ public class Reservation
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
-	@Override
-	public String toString() 
-	{
-		return "Reservation [id=" + id + "\ncheckIn=" + checkIn + "\ncheckOut=" + checkOut + "\nmadeBy=" + madeBy
-				+ "\nbooking=" + booking + "\nlocation=" + location + "\nguest=" + guest + "]";
+	public Guest getGuest() {
+		return guest;
 	}
-	public Reservation() 
-	{
-		super();
+	public void setGuest(Guest guest) {
+		this.guest = guest;
 	}
+	
+	
 }
