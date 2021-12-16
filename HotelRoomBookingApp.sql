@@ -1,5 +1,5 @@
 --
-create table guest(
+create table guest_details(
 id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 101 primary key,
 firstname varchar2(100) not null,
 lastname varchar2(100) not null,
@@ -12,7 +12,7 @@ select * from guest;
 truncate table guest;
 drop table guest;
 --
-create table reservation(
+create table reservation_details(
 id int primary key,
 check_in varchar2(100) not null,
 chech_out varchar2(100) not null,
@@ -31,7 +31,7 @@ capacity int not null
 );
 
 --
-create table room(
+create table room_details(
 id int primary key,
 total_rooms int not null,
 availible int not null,
@@ -52,7 +52,7 @@ foreign key (reservation_id) references reservation (id)
 );
 
 --
-create table wedding_hall(
+create table wedding_hall_details(
 id int primary key,
 total_wedding_halls int not null,
 availible int not null
@@ -71,7 +71,7 @@ foreign key (reservation_id) references reservation (id)
 );
 
 --
-create table meeting_hall(
+create table meeting_hall_details(
 id int primary key,
 total_meeting_halls int,
 availbility int
