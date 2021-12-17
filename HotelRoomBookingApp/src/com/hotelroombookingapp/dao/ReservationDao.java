@@ -2,17 +2,15 @@ package com.hotelroombookingapp.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 import com.hotelroombookingapp.model.Guest;
 
-public class ReservationDao {
+public class ReservationDao 
+{
 	
 	public boolean bookRoom(Guest guestObj) 
 	{
@@ -21,11 +19,11 @@ public class ReservationDao {
 		Scanner sc = new Scanner(System.in);
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		String bookRoomQuery = "insert into reservation_details (check_in,check_out,made_by,booking,category,location,guest_id) values (?,?,?,?,?,?,?)";
-		System.out.println(bookRoomQuery);
+//		System.out.println(bookRoomQuery);
 		System.out.println("enter check-in date");
 		Date checkIn = sdf.parse(sc.nextLine());
 		
-		System.out.println("enter check-in date");
+		System.out.println("enter check-out date");
 		Date checkOut = sdf.parse(sc.nextLine());
 		
 		System.out.println("made by: " + guestObj.getFirstName()+" "+guestObj.getLastName());
@@ -89,5 +87,34 @@ public class ReservationDao {
 //		}
 		return (i<0)?true:false;
 	}
+	
+	
+	
+	public boolean cancelBooking(Guest guestObj) 
+	{
+		boolean flag=false;
+		try
+		{
+			String cancelRoomQuery = "delete * from reservation_details where id=?";
+		
+			Connection conn = ConnectionUtil.getDbConnection();
+			PreparedStatement pstmt = conn.prepareStatement(cancelRoomQuery);
+			GuestDao gDao = new GuestDao();
+			
+			int guestId=gDao.findGuestId(guestObj);
+			pstmt.setInt(1, guestId);
+			
+			flag=pstmt.executeUpdate()>0;
+			
+			
+		}
+		catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+		return flag;
+	}
 
 }
+

@@ -1,0 +1,29 @@
+Database
+
+guest_details
+reservation_details
+payment
+hoteladmin
+
+
+
+GuestDao
+	UserLogin(completed)
+	UserRegistration(completed)
+	List_All_Users(completed)
+	Search_User(yet to start)
+	Delete_User(yet to start)
+	Update_User(yet to start)
+	Sort_by_Name(yet to start)
+	Sort_by_Location(yet to start)
+
+ReservationDao
+	Booking(completed)
+	Show all booking(yet to start)
+	update booking(yet to start)
+	Cancel_booking(on progress)
+
+PaymentDao
+	Mode_of_Payment(yet to start)
+	
+	
