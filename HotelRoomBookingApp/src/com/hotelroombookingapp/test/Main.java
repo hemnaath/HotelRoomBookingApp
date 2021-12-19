@@ -153,7 +153,7 @@ public class Main
 									break;
 								}
 							}while(firstNameFlag!='n');
-//							System.out.flush();1
+//							System.out.flush();
 							
 						case 2:
 							//Login Guest
@@ -170,7 +170,7 @@ public class Main
 								System.out.println("Welcome "+g2.getFirstName());							
 								while(flag)
 								{
-									System.out.println("1.Booking\n2.Cancel Booking\n3.logout");
+									System.out.println("1.book\n2.cancel\n3.update\n4.logout");
 									int userOption = Integer.parseInt(sc.nextLine());
 									ReservationDao reserveDao = new ReservationDao();
 									switch(userOption)
@@ -182,6 +182,9 @@ public class Main
 											reserveDao.cancelBooking(g2);
 											break;
 										case 3:
+											System.out.println("update booked rooms");
+											break;
+										case 4:
 											flag=false;
 											break;
 									}

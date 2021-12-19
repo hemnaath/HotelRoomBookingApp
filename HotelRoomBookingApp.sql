@@ -30,37 +30,9 @@ select * from reservation_details;
 truncate table reservation_details;
 
 -------------------------------------------------------------------
-create table room_details(
-id int primary key,
-total_rooms int not null,
-availible int not null,
-reservation_details_id int not null,
-foreign key (reservation_details_id) references reservation_details (id)
-);
-
---
 
 
 --
-create table wedding_hall_details(
-id int primary key,
-total_wedding_halls int not null,
-availible int not null,
-reservation_details_id int not null,
-foreign key (reservation_details_id) references reservation_details (id)
-);
-
---
-
-
---
-create table meeting_hall_details(
-id int primary key,
-total_meeting_halls int,
-availbility int,
-reservation_details_id int not null,
-foreign key (reservation_details_id) references reservation_details (id)
-);
 
 --
 
