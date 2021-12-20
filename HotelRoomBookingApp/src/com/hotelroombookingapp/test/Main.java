@@ -1,5 +1,7 @@
 package com.hotelroombookingapp.test;
 
+import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -8,10 +10,11 @@ import com.hotelroombookingapp.model.Guest;
 import com.hotelroombookingapp.dao.AdminDao;
 import com.hotelroombookingapp.dao.GuestDao;
 import com.hotelroombookingapp.dao.ReservationDao;
+import com.hotelroombookingapp.dao.RoomDetailsDao;
 
 public class Main 
 {
-	public static void main(String args[])
+	public static void main(String args[]) throws SQLException, ParseException
 	{
 		Scanner sc = new Scanner(System.in);
 		boolean flag=true;
@@ -173,6 +176,7 @@ public class Main
 									System.out.println("1.book\n2.cancel\n3.update\n4.logout");
 									int userOption = Integer.parseInt(sc.nextLine());
 									ReservationDao reserveDao = new ReservationDao();
+									RoomDetailsDao roomDao = new RoomDetailsDao();
 									switch(userOption)
 									{
 										case 1:
@@ -182,7 +186,7 @@ public class Main
 											reserveDao.cancelBooking(g2);
 											break;
 										case 3:
-											System.out.println("update booked rooms");
+											roomDao.bookRoom(g2);
 											break;
 										case 4:
 											flag=false;

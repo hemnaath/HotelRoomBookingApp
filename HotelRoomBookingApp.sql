@@ -31,7 +31,50 @@ truncate table reservation_details;
 
 -------------------------------------------------------------------
 
+create table room_details(
+room_number int GENERATED ALWAYS AS IDENTITY START WITH 1001,
+status varchar2(100) default 'vacant',
+made_by varchar2(100),
+check_in date,
+check_out date,
+category varchar(100),
+location varchar2(100),
+guest_id int,
+foreign key (guest_id) references guest_details(id)
+);
 
+select * from room_details;
+truncate table room_details;
+drop table room_details;
+
+
+create table wedding_hall_details(
+id int GENERATED ALWAYS AS IDENTITY START WITH 1001 primary key,
+room_number int,
+status varchar2(100) default 'vacant',
+made_by varchar2(100),
+check_in date,
+check_out date,
+category varchar(100),
+location varchar2(100),
+guest_id int,
+foreign key (guest_id) references guest_details(id)
+);
+
+
+
+create table meeting_hall_details(
+id int GENERATED ALWAYS AS IDENTITY START WITH 1001 primary key,
+room_number int GENERATED ALWAYS AS IDENTITY START WITH 1001,
+status varchar2(100) default 'vacant',
+made_by varchar2(100),
+check_in date,
+check_out date,
+category varchar(100),
+location varchar2(100),
+guest_id int,
+foreign key (guest_id) references guest_details(id)
+);
 
 
 
@@ -41,8 +84,7 @@ truncate table reservation_details;
 --
 create table payment(
 id int primary key,
-mode_of_payment varchar2(100),
-date_of_pay varchar2(100),
+wallet_balance number(100),
 guest_id int,
 foreign key (guest_id) references guest (id)
 );
