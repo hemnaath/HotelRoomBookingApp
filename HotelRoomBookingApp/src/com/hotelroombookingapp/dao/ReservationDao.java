@@ -25,7 +25,7 @@ public class ReservationDao {
 		System.out.println("enter check-in date");
 		Date checkIn = sdf.parse(sc.nextLine());
 		
-		System.out.println("enter check-in date");
+		System.out.println("enter check-out date");
 		Date checkOut = sdf.parse(sc.nextLine());
 		
 		System.out.println("made by: " + guestObj.getFirstName()+" "+guestObj.getLastName());
