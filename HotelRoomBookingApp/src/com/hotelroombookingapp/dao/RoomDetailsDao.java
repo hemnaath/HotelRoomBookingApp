@@ -97,6 +97,10 @@ public class RoomDetailsDao {
 			System.out.println("Booking Cancelled");
 			pstmt2.executeQuery();
 		}
+		else
+		{
+			System.out.println("Invalid Room");
+		}
 	}
 	
 	
