@@ -13,23 +13,6 @@ truncate table guest;
 drop table guest;
 
 -----------------------------------------------------------
-create table reservation_details(
-id NUMBER GENERATED ALWAYS AS IDENTITY START WITH 1001 primary key,
-check_in date not null,
-check_out date not null,
-made_by varchar2(100) not null,
-booking varchar2(100) not null,
-category varchar2(100) NOT null,
-location varchar2(100) not null,
-guest_id int not null,
-foreign key (guest_id) references guest_details (id)
-);
-
-drop table reservation_details CASCADE CONSTRAINTS;
-select * from reservation_details;
-truncate table reservation_details;
-
--------------------------------------------------------------------
 
 create table room_details(
 room_number int primary key,
