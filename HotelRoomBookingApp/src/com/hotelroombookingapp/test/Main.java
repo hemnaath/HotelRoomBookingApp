@@ -166,11 +166,11 @@ public class Main
 							System.out.println("Enter Password");
 							String lgPassword=sc.nextLine();
 							GuestDao guestDaoObj = new GuestDao();
-							Guest g2=guestDaoObj.loginGuest(lgMail, lgPassword);
+							Guest guestObj=guestDaoObj.loginGuest(lgMail, lgPassword);
 							//if(lgMail.equals(g2.getEmail()) && lgPassword.equals(g2.getPassword())) 
-							if(g2!=null)
+							if(guestObj!=null)
 							{
-								System.out.println("Welcome "+g2.getFirstName());							
+								System.out.println("Welcome "+guestObj.getFirstName());							
 								while(flag)
 								{
 									System.out.println("1.Room Booking\n2.Wedding Hall Booking\n3.Meeting Hall Booking\n4.Logout");
@@ -185,11 +185,11 @@ public class Main
 											{
 												case 1:
 													System.out.println("bookroom");
-													roomDao.bookRoom(g2);
+													roomDao.bookRoom(guestObj);
 													break;
 												case 2:
 													System.out.println("cancelroom");
-													roomDao.cancelRoom(g2);
+													roomDao.cancelRoom(guestObj);
 													break;
 												case 3:
 													System.out.println("update room");
