@@ -39,7 +39,7 @@ public class RoomDetailsDao {
 		PreparedStatement pstmt = conn.prepareStatement(bookRoomQuery);
 		PreparedStatement pstmt2 = conn.prepareStatement(updateBookRoomQuery);
 		
-		GuestDao gDao = new GuestDao();
+		GuestDao guestDaoObj = new GuestDao();
 		RoomDetailsDao roomDao = new RoomDetailsDao();
 
 		
@@ -48,7 +48,7 @@ public class RoomDetailsDao {
 		pstmt.setString(3, guestObj.getFirstName());
 		pstmt.setString(4, category);
 		pstmt.setString(5,location);
-		int guestId=gDao.findGuestId(guestObj);
+		int guestId=guestDaoObj.findGuestId(guestObj);
 		pstmt.setInt(6, guestId);
 		pstmt.setInt(7, roomDao.findRoomNumber());
 		
@@ -83,10 +83,10 @@ public class RoomDetailsDao {
 		PreparedStatement pstmt = conn.prepareStatement(cancelRoomQuery);
 		PreparedStatement pstmt2 = conn.prepareStatement(updateCancelRoomQuery);
 		
-		GuestDao gDao = new GuestDao();
+		GuestDao guestDaoObj = new GuestDao();
 		
 		pstmt.setInt(1, roomNumber);
-		int guestId=gDao.findGuestId(guestObj);
+		int guestId=guestDaoObj.findGuestId(guestObj);
 		pstmt.setInt(2, guestId);
 		
 		pstmt2.setInt(1, roomNumber);

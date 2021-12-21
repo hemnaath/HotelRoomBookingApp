@@ -78,8 +78,8 @@ public class Main
 																	String rgMobileNumber = sc.nextLine();
 																	if(rgMobileNumber.matches("[0-9]{10}"))
 																	{
-																		GuestDao guestregisterdao = new GuestDao();
-																		Guest g1 = guestregisterdao.registerGuest(rgFirstname,rgLastname,rgMail,
+																		GuestDao guestDaoObj = new GuestDao();
+																		Guest g1 = guestDaoObj.registerGuest(rgFirstname,rgLastname,rgMail,
 																				rgPassword,
 																		rgConfirmPassword,Long.parseLong(rgMobileNumber));
 																		System.out.println("Registered Successfully");
@@ -164,8 +164,8 @@ public class Main
 							String lgMail=sc.nextLine();
 							System.out.println("Enter Password");
 							String lgPassword=sc.nextLine();
-							GuestDao gdao2 = new GuestDao();
-							Guest g2=gdao2.loginGuest(lgMail, lgPassword);
+							GuestDao guestDaoObj = new GuestDao();
+							Guest g2=guestDaoObj.loginGuest(lgMail, lgPassword);
 							//if(lgMail.equals(g2.getEmail()) && lgPassword.equals(g2.getPassword())) 
 							if(g2!=null)
 							{
@@ -233,8 +233,8 @@ public class Main
 						{
 						case 1:
 							//list all user
-							GuestDao gdao3 = new GuestDao();
-							List<Guest> guestList = gdao3.showAllUser();
+							GuestDao guestDaoObj = new GuestDao();
+							List<Guest> guestList = guestDaoObj.showAllUser();
 							for(int i=0;i<guestList.size();i++)
 							{
 								System.out.println(guestList.get(i));
