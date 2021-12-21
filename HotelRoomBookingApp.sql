@@ -32,7 +32,7 @@ truncate table reservation_details;
 -------------------------------------------------------------------
 
 create table room_details(
-room_number int GENERATED ALWAYS AS IDENTITY START WITH 1001,
+room_number int primary key,
 status varchar2(100) default 'vacant',
 made_by varchar2(100),
 check_in date,
@@ -46,7 +46,7 @@ foreign key (guest_id) references guest_details(id)
 select * from room_details;
 truncate table room_details;
 drop table room_details;
-insert into room_details(made_by,check_in,check_out,category,location,guest_id) values('hemnaath','12-12-2021','13-12-2021','premium','chennai',101);
+insert into room_details(room_number) values(1003);
 select room_number from room_details where status='vacant';
 
 
