@@ -14,59 +14,92 @@ drop table guest;
 
 -----------------------------------------------------------
 
-create table room_details(
+
+create table room_details
+(
 room_number int primary key,
 status varchar2(100) default 'vacant',
-made_by varchar2(100),
-check_in date,
-check_out date,
-category varchar(100),
+category varchar2(100),
 location varchar2(100),
-guest_id int,
-foreign key (guest_id) references guest_details(id)
+price number(10)
 );
+
 
 select * from room_details;
 truncate table room_details;
 drop table room_details;
-insert into room_details(room_number) values(1003);
-select room_number from room_details where status='vacant';
+insert into room_details(room_number,category,location,price) values(1000,'premium','chennai',8000);
+insert into room_details(room_number,category,location,price) values(1001,'premium','chennai',8000);
+insert into room_details(room_number,category,location,price) values(1002,'luxury','chennai',6000);
+insert into room_details(room_number,category,location,price) values(1003,'luxury','chennai',6000);
+insert into room_details(room_number,category,location,price) values(1004,'standard','chennai',4000);
+insert into room_details(room_number,category,location,price) values(1005,'standard','chennai',4000);
+insert into room_details(room_number,category,location,price) values(1006,'budget','chennai',2000);
+insert into room_details(room_number,category,location,price) values(1007,'budget','chennai',2000);
 
 
-create table wedding_hall_details(
-id int GENERATED ALWAYS AS IDENTITY START WITH 1001 primary key,
+
+
+create table wedding_hall_details
+(
+wedding_hall_number int primary key,
+status varchar2(100) default 'vacant',
+category varchar2(100),
+location varchar2(100),
+price number(10)
+);
+
+
+select * from wedding_hall_details;
+truncate table wedding_hall_details;
+drop table wedding_hall_details;
+insert into wedding_hall_details(wedding_hall_number,category,location,price) values(2000,'premium','chennai',100000);
+insert into wedding_hall_details(wedding_hall_number,category,location,price) values(2001,'luxury','chennai',80000);
+insert into wedding_hall_details(wedding_hall_number,category,location,price) values(2002,'standard','chennai',60000);
+insert into wedding_hall_details(wedding_hall_number,category,location,price) values(2003,'budget','chennai',40000);
+
+
+
+
+create table meeting_hall_details
+(
+meeting_hall_number int primary key,
+status varchar2(100) default 'vacant',
+category varchar2(100),
+location varchar2(100),
+price number(10)
+);
+
+
+select * from meeting_hall_details;
+truncate table meeting_hall_details;
+drop table meeting_hall_details;
+insert into meeting_hall_details(meeting_hall_number,category,location,price) values(2000,'premium','chennai',4000);
+insert into meeting_hall_details(meeting_hall_number,category,location,price) values(2001,'luxury','chennai',3000);
+insert into meeting_hall_details(meeting_hall_number,category,location,price) values(2002,'standard','chennai',2000);
+insert into meeting_hall_details(meeting_hall_number,category,location,price) values(2003,'budget','chennai',1000);
+
+
+
+
+create table room_transaction
+(
 room_number int,
-status varchar2(100) default 'vacant',
-made_by varchar2(100),
 check_in date,
 check_out date,
-category varchar(100),
+category varchar2(100),
 location varchar2(100),
 guest_id int,
-foreign key (guest_id) references guest_details(id)
+foreign key (guest_id) references guest(id)
 );
 
-
-
-create table meeting_hall_details(
-id int GENERATED ALWAYS AS IDENTITY START WITH 1001 primary key,
-room_number int GENERATED ALWAYS AS IDENTITY START WITH 1001,
-status varchar2(100) default 'vacant',
-made_by varchar2(100),
-check_in date,
-check_out date,
-category varchar(100),
-location varchar2(100),
-guest_id int,
-foreign key (guest_id) references guest_details(id)
-);
+select * from room_transaction;
+truncate table room_transaction;
+drop table room_transaction;
 
 
 
---
 
-
---
 create table payment(
 id int primary key,
 wallet_balance number(100),
@@ -74,7 +107,8 @@ guest_id int,
 foreign key (guest_id) references guest (id)
 );
 
---
+
+
 
 -----------------------------------------------------------------------
 create table hoteladmin(

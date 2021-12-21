@@ -4,23 +4,18 @@ import java.util.Objects;
 
 public class RoomDetails {
 	
-	private int room_number;
-	private String madeBy;
-	private String checkIn;
-	private String checkOut;
+	private int roomNumber;
+	private String status;
 	private String category;
 	private String location;
-	private Guest guest_id;
-	public RoomDetails(int room_number, String madeBy, String checkIn, String checkOut, String category,
-			String location, Guest guest_id) {
+	private int price;
+	public RoomDetails(int roomNumber, String status, String category, String location, int price) {
 		super();
-		this.room_number = room_number;
-		this.madeBy = madeBy;
-		this.checkIn = checkIn;
-		this.checkOut = checkOut;
+		this.roomNumber = roomNumber;
+		this.status = status;
 		this.category = category;
 		this.location = location;
-		this.guest_id = guest_id;
+		this.price = price;
 	}
 	public RoomDetails() {
 		super();
@@ -28,12 +23,12 @@ public class RoomDetails {
 	}
 	@Override
 	public String toString() {
-		return "RoomDetails [room_number=" + room_number + ", madeBy=" + madeBy + ", checkIn=" + checkIn + ", checkOut="
-				+ checkOut + ", category=" + category + ", location=" + location + ", guest_id=" + guest_id + "]";
+		return "RoomDetails [roomNumber=" + roomNumber + ", status=" + status + ", category=" + category + ", location="
+				+ location + ", price=" + price + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(category, checkIn, checkOut, guest_id, location, madeBy, room_number);
+		return Objects.hash(category, location, price, roomNumber, status);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -44,34 +39,20 @@ public class RoomDetails {
 		if (getClass() != obj.getClass())
 			return false;
 		RoomDetails other = (RoomDetails) obj;
-		return Objects.equals(category, other.category) && Objects.equals(checkIn, other.checkIn)
-				&& Objects.equals(checkOut, other.checkOut) && Objects.equals(guest_id, other.guest_id)
-				&& Objects.equals(location, other.location) && Objects.equals(madeBy, other.madeBy)
-				&& room_number == other.room_number;
+		return Objects.equals(category, other.category) && Objects.equals(location, other.location)
+				&& price == other.price && roomNumber == other.roomNumber && Objects.equals(status, other.status);
 	}
-	public int getRoom_number() {
-		return room_number;
+	public int getRoomNumber() {
+		return roomNumber;
 	}
-	public void setRoom_number(int room_number) {
-		this.room_number = room_number;
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
 	}
-	public String getMadeBy() {
-		return madeBy;
+	public String getStatus() {
+		return status;
 	}
-	public void setMadeBy(String madeBy) {
-		this.madeBy = madeBy;
-	}
-	public String getCheckIn() {
-		return checkIn;
-	}
-	public void setCheckIn(String checkIn) {
-		this.checkIn = checkIn;
-	}
-	public String getCheckOut() {
-		return checkOut;
-	}
-	public void setCheckOut(String checkOut) {
-		this.checkOut = checkOut;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	public String getCategory() {
 		return category;
@@ -85,13 +66,14 @@ public class RoomDetails {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public Guest getGuest_id() {
-		return guest_id;
+	public int getPrice() {
+		return price;
 	}
-	public void setGuest_id(Guest guest_id) {
-		this.guest_id = guest_id;
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 	
+
 
 }

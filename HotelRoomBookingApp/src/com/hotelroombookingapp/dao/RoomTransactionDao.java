@@ -12,12 +12,15 @@ import java.util.Scanner;
 
 import com.hotelroombookingapp.model.Guest;
 
-public class RoomDetailsDao {
+public class RoomTransactionDao {
 	
 	public void bookRoom(Guest guestObj) throws SQLException, ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Scanner sc = new Scanner(System.in);
+		int vacantRoomNumber=0;
+		int guestId=0;
+		int i=0;
 		
 		System.out.println("enter check-in date");
 		Date checkIn = sdf.parse(sc.nextLine());
@@ -33,28 +36,41 @@ public class RoomDetailsDao {
 		
 		
 		
-		String bookRoomQuery="update room_details set check_in=?,check_out=?,made_by=?,category=?,location=?,guest_id=? where room_number=?";
+		String fetchVacantRoom="select room_number from room_details where status='vacant'";
+		
+		String bookRoomQuery="insert into room_transaction(room_number,check_in,check_out,category,location,guest_id) values(?,?,?,?,?,?)";
 		String updateBookRoomQuery="update room_details set status='occupied' where room_number=?";
+//		System.out.println(bookRoomQuery);
 		Connection conn = ConnectionUtil.getDbConnection();
+		Statement stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(fetchVacantRoom);
+		if(rs.next())
+		{
+			vacantRoomNumber=rs.getInt(1);
+		}
+		System.out.println(vacantRoomNumber);
 		PreparedStatement pstmt = conn.prepareStatement(bookRoomQuery);
 		PreparedStatement pstmt2 = conn.prepareStatement(updateBookRoomQuery);
 		
 		GuestDao guestDaoObj = new GuestDao();
-		RoomDetailsDao roomDao = new RoomDetailsDao();
+//		RoomTransactionDao roomDao = new RoomTransactionDao();
 
+		guestId=guestDaoObj.findGuestId(guestObj);
+		System.out.println(guestId);
 		
-		pstmt.setDate(1, new java.sql.Date(checkIn.getTime()));
-		pstmt.setDate(2, new java.sql.Date(checkOut.getTime()));
-		pstmt.setString(3, guestObj.getFirstName());
+		pstmt.setInt(1, vacantRoomNumber);
+		pstmt.setDate(2, new java.sql.Date(checkIn.getTime()));
+		pstmt.setDate(3, new java.sql.Date(checkOut.getTime()));
 		pstmt.setString(4, category);
 		pstmt.setString(5,location);
-		int guestId=guestDaoObj.findGuestId(guestObj);
 		pstmt.setInt(6, guestId);
-		pstmt.setInt(7, roomDao.findRoomNumber());
 		
-		pstmt2.setInt(1, roomDao.findRoomNumber());
+		pstmt2.setInt(1, vacantRoomNumber);
 		
-		int i = pstmt.executeUpdate();
+//		System.out.println(bookRoomQuery);
+
+		
+		i = pstmt.executeUpdate();
 		if(i>0)
 		{
 			System.out.println("Room booked");
@@ -108,20 +124,20 @@ public class RoomDetailsDao {
 	
 	
 	
-	public int findRoomNumber() throws SQLException
-	{
-		int vacantRoomNumber=0;
-		String findRoomNumberQuery="select room_number from room_details where status='vacant'";
-		Connection conn = ConnectionUtil.getDbConnection();
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(findRoomNumberQuery);
-		if(rs.next())
-		{
-			vacantRoomNumber = rs.getInt(1);
-//			System.out.println(vacantRoomNumber);
-		}
-//		RoomDetailsDao roomDao = new RoomDetailsDao();
-		return vacantRoomNumber;
-	}
+//	public int findRoomNumber() throws SQLException
+//	{
+//		int vacantRoomNumber=0;
+//		String findRoomNumberQuery="select room_number from room_details where status='vacant'";
+//		Connection conn = ConnectionUtil.getDbConnection();
+//		Statement stmt = conn.createStatement();
+//		ResultSet rs = stmt.executeQuery(findRoomNumberQuery);
+//		if(rs.next())
+//		{
+//			vacantRoomNumber = rs.getInt(1);
+////			System.out.println(vacantRoomNumber);
+//		}
+////		RoomDetailsDao roomDao = new RoomDetailsDao();
+//		return vacantRoomNumber;
+//	}
 
 }

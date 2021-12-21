@@ -2,7 +2,7 @@ package com.hotelroombookingapp.model;
 
 import java.util.Objects;
 
-public class MeetingHallDetails {
+public class RoomTransaction {
 	
 	private int room_number;
 	private String madeBy;
@@ -11,7 +11,7 @@ public class MeetingHallDetails {
 	private String category;
 	private String location;
 	private Guest guest_id;
-	public MeetingHallDetails(int room_number, String madeBy, String checkIn, String checkOut, String category,
+	public RoomTransaction(int room_number, String madeBy, String checkIn, String checkOut, String category,
 			String location, Guest guest_id) {
 		super();
 		this.room_number = room_number;
@@ -22,7 +22,7 @@ public class MeetingHallDetails {
 		this.location = location;
 		this.guest_id = guest_id;
 	}
-	public MeetingHallDetails() {
+	public RoomTransaction() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -43,7 +43,7 @@ public class MeetingHallDetails {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MeetingHallDetails other = (MeetingHallDetails) obj;
+		RoomTransaction other = (RoomTransaction) obj;
 		return Objects.equals(category, other.category) && Objects.equals(checkIn, other.checkIn)
 				&& Objects.equals(checkOut, other.checkOut) && Objects.equals(guest_id, other.guest_id)
 				&& Objects.equals(location, other.location) && Objects.equals(madeBy, other.madeBy)

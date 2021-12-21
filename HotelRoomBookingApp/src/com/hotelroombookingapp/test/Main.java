@@ -9,7 +9,8 @@ import com.hotelroombookingapp.model.Admin;
 import com.hotelroombookingapp.model.Guest;
 import com.hotelroombookingapp.dao.AdminDao;
 import com.hotelroombookingapp.dao.GuestDao;
-import com.hotelroombookingapp.dao.RoomDetailsDao;
+//import com.hotelroombookingapp.dao.RoomDetailsDao;
+import com.hotelroombookingapp.dao.RoomTransactionDao;
 
 public class Main 
 {
@@ -174,7 +175,7 @@ public class Main
 								{
 									System.out.println("1.Room Booking\n2.Wedding Hall Booking\n3.Meeting Hall Booking\n4.Logout");
 									int bookingOption = Integer.parseInt(sc.nextLine());
-									RoomDetailsDao roomDao = new RoomDetailsDao();
+									RoomTransactionDao roomDao = new RoomTransactionDao();
 									switch(bookingOption)
 									{
 										case 1:
