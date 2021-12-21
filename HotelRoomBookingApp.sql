@@ -46,6 +46,8 @@ foreign key (guest_id) references guest_details(id)
 select * from room_details;
 truncate table room_details;
 drop table room_details;
+insert into room_details(made_by,check_in,check_out,category,location,guest_id) values('hemnaath','12-12-2021','13-12-2021','premium','chennai',101);
+select room_number from room_details where status='vacant';
 
 
 create table wedding_hall_details(
@@ -105,3 +107,5 @@ insert into hoteladmin(email,password) values('admin@tstays.com','web123');
 
 insert into admin values(1,'admin@tstays.com','web123');
 
+select room_number from room_details where status='vacant';
+commit;

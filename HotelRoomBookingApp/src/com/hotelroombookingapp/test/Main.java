@@ -173,20 +173,37 @@ public class Main
 								System.out.println("Welcome "+g2.getFirstName());							
 								while(flag)
 								{
-									System.out.println("1.book\n2.cancel\n3.update\n4.logout");
-									int userOption = Integer.parseInt(sc.nextLine());
-									ReservationDao reserveDao = new ReservationDao();
+									System.out.println("1.Room Booking\n2.Wedding Hall Booking\n3.Meeting Hall Booking\n4.Logout");
+									int bookingOption = Integer.parseInt(sc.nextLine());
 									RoomDetailsDao roomDao = new RoomDetailsDao();
-									switch(userOption)
+									switch(bookingOption)
 									{
 										case 1:
-											reserveDao.bookRoom(g2);
+											System.out.println("1.Book Room\n2.Cancel Room\n3.Update Room\n4.Logout");
+											int roomOption = Integer.parseInt(sc.nextLine());
+											switch(roomOption)
+											{
+												case 1:
+													System.out.println("bookroom");
+													roomDao.bookRoom(g2);
+													break;
+												case 2:
+													System.out.println("cancelroom");
+													roomDao.cancelRoom(g2);
+													break;
+												case 3:
+													System.out.println("update room");
+													break;
+												case 4:
+													flag=false;
+													break;
+											}
 											break;
 										case 2:
-											reserveDao.cancelBooking(g2);
+											
 											break;
 										case 3:
-											roomDao.bookRoom(g2);
+											
 											break;
 										case 4:
 											flag=false;
