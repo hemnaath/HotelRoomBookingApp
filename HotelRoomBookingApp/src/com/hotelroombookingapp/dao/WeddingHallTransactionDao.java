@@ -33,44 +33,48 @@ public class WeddingHallTransactionDao
 		System.out.println("enter location");
 		String location = sc.nextLine();
 		
-		String fetchVacantWeddingRoom="select wedding_hall_number from wedding_hall_details where status='vacant'";
+		String fetchVacantWeddingRoom="select wedding_hall_number from wedding_hall_details where status='vacant' and category=? and location=?";
 		
 		String bookWeddingRoomQuery="insert into wedding_hall_transaction(wedding_hall_number,check_in,check_out,category,location,guest_id) values(?,?,?,?,?,?)";
 		String updateWeddingRoomQuery="update wedding_hall_details set status='occupied' where wedding_hall_number=?";
 //		System.out.println(bookRoomQuery);
 		Connection conn = ConnectionUtil.getDbConnection();
-		Statement stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(fetchVacantWeddingRoom);
+		PreparedStatement pstmt1 = conn.prepareStatement(fetchVacantWeddingRoom);
+		
+		pstmt1.setString(1, category);
+		pstmt1.setString(2, location);
+		
+		ResultSet rs = pstmt1.executeQuery();
 		if(rs.next())
 		{
 			vacantWeddingRoomNumber=rs.getInt(1);
 		}
 		
-		PreparedStatement pstmt = conn.prepareStatement(bookWeddingRoomQuery);
-		PreparedStatement pstmt2 = conn.prepareStatement(updateWeddingRoomQuery);
+		PreparedStatement pstmt2 = conn.prepareStatement(bookWeddingRoomQuery);
+		PreparedStatement pstmt3 = conn.prepareStatement(updateWeddingRoomQuery);
 		
 		GuestDao guestDaoObj = new GuestDao();
 		
 		guestId=guestDaoObj.findGuestId(guestObj);
 //		System.out.println(guestId);
 		
-		pstmt.setInt(1, vacantWeddingRoomNumber);
-		pstmt.setDate(2, new java.sql.Date(checkIn.getTime()));
-		pstmt.setDate(3, new java.sql.Date(checkOut.getTime()));
-		pstmt.setString(4, category);
-		pstmt.setString(5,location);
-		pstmt.setInt(6, guestId);
-		
 		pstmt2.setInt(1, vacantWeddingRoomNumber);
+		pstmt2.setDate(2, new java.sql.Date(checkIn.getTime()));
+		pstmt2.setDate(3, new java.sql.Date(checkOut.getTime()));
+		pstmt2.setString(4, category);
+		pstmt2.setString(5,location);
+		pstmt2.setInt(6, guestId);
+		
+		pstmt3.setInt(1, vacantWeddingRoomNumber);
 		
 //		System.out.println(bookRoomQuery);
 
 		
-		i = pstmt.executeUpdate();
+		i = pstmt2.executeUpdate();
 		if(i>0)
 		{
 			System.out.println("Weddings Hall booked");
-			pstmt2.executeUpdate();
+			pstmt3.executeUpdate();
 		}
 		else
 		{

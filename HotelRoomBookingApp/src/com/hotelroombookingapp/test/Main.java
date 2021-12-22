@@ -198,6 +198,8 @@ public class Main
 													break;
 												case 3:
 													System.out.println("update room");
+													roomDao.updateRoom(guestObj);
+													System.out.println("Updated Successfully");
 													break;
 												case 4:
 													flag=false;
