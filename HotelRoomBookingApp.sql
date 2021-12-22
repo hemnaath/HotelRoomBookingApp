@@ -177,4 +177,5 @@ select * from payment;
 truncate table room_transaction;
 truncate table wedding_hall_transaction;
 truncate table meeting_hall_transaction;
-truncate table guest_details;
+
+drop table room_transactions;
