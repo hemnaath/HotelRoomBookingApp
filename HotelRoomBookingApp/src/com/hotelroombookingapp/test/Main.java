@@ -42,6 +42,7 @@ public class Main
 				case 1:
 					System.out.println("1.Register");
 					System.out.println("2.Login");
+					System.out.println("3.Forget Password");
 					int userchoice = Integer.parseInt(sc.nextLine());
 					switch(userchoice)
 					{
@@ -82,7 +83,7 @@ public class Main
 																	if(rgMobileNumber.matches("[0-9]{10}"))
 																	{
 																		GuestDao guestDaoObj = new GuestDao();
-																		Guest g1 = guestDaoObj.registerGuest(rgFirstname,rgLastname,rgMail,
+																		Guest guestObj = guestDaoObj.registerGuest(rgFirstname,rgLastname,rgMail,
 																				rgPassword,
 																		rgConfirmPassword,Long.parseLong(rgMobileNumber));
 																		System.out.println("Registered Successfully");
@@ -256,6 +257,11 @@ public class Main
 								System.out.println("Invalid username or password");
 							}
 							break;
+						case 3:
+							GuestDao guestDaoObj2 = new GuestDao();
+							System.out.println("forget password");
+							guestDaoObj2.forgetPassword();
+							break;
 					}
 					break;
 				case 2:						
@@ -264,8 +270,8 @@ public class Main
 					System.out.println("Enter Password");
 					String adminPassword = sc.nextLine();
 					AdminDao adao = new AdminDao();
-					Admin a2=adao.loginAdmin(adminMail, adminPassword);
-					if(a2!=null)
+					Admin adminObj=adao.loginAdmin(adminMail, adminPassword);
+					if(adminObj!=null)
 					{
 						System.out.println("Welcome Admin");
 						System.out.println("1.List all Guests");

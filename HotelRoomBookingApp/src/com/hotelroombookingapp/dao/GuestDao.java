@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import com.hotelroombookingapp.model.Guest;
 
@@ -126,7 +127,29 @@ public class GuestDao {
 	
 	
 	
-	
+	public void forgetPassword() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter email");
+		String mail=sc.nextLine();
+		System.out.println("Enter new password");
+		String passwd=sc.nextLine();
+		
+		String forgetPasswordQuery = "update guest_details set password=? where email=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(forgetPasswordQuery);
+		
+		pstmt.setString(1, passwd);
+		pstmt.setString(2, mail);
+		
+		int i = pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("Password changed successfully");
+		}
+	}
 	
 	
 	

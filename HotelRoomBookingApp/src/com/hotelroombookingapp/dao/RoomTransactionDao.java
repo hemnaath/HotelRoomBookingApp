@@ -110,5 +110,38 @@ public class RoomTransactionDao {
 		}
 	}
 	
+	
+	
+	
+	
+	
+	public void updateRoom() throws ParseException, SQLException
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter check-in date");
+		Date checkIn = sdf.parse(sc.nextLine());
+		System.out.println("enter check-out date");
+		Date checkOut = sdf.parse(sc.nextLine());
+		System.out.println("enter category");
+		System.out.println("1.Premium\n2.luxury\n3.standard\n4.budget");
+		int categoryChoice = Integer.parseInt(sc.nextLine());
+		String category = (categoryChoice==1)?"Premium":(categoryChoice==2)?"luxury":(categoryChoice==3)?"standard":"budget";
+		System.out.println("enter location");
+		String location = sc.nextLine();
+		
+		String updateRoomQuery="update room_transaction set check_in=?,check_out=?,category=?,location=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(updateRoomQuery);
+		
+		pstmt.setDate(1, new java.sql.Date(checkIn.getTime()));
+		pstmt.setDate(2, new java.sql.Date(checkOut.getTime()));
+		pstmt.setString(4, location);
+		
+		
+	}
+	
 
 }

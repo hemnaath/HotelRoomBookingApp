@@ -154,21 +154,15 @@ foreign key (guest_id) references guest (id)
 
 
 -----------------------------------------------------------------------
-create table hoteladmin(
+create table admin(
 id int GENERATED ALWAYS AS IDENTITY START WITH 1 primary key,
 email varchar2(100) unique,
 password varchar2(100) not null
 );
 
+insert into admin(email,password) values('admin@tstays.com','web123');
 
 
-select * from hoteladmin;
-insert into hoteladmin(email,password) values('admin@tstays.com','web123');
-
-insert into admin values(1,'admin@tstays.com','web123');
-
-select room_number from room_details where status='vacant';
-commit;
 
 select * from guest_details;
 select * from room_details;
@@ -177,3 +171,10 @@ select * from meeting_hall_details;
 select * from room_transaction;
 select * from wedding_hall_transaction;
 select * from meeting_hall_transaction;
+select * from admin;
+select * from payment;
+
+truncate table room_transaction;
+truncate table wedding_hall_transaction;
+truncate table meeting_hall_transaction;
+truncate table guest_details;
