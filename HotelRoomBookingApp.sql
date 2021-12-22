@@ -172,6 +172,8 @@ commit;
 
 select * from guest_details;
 select * from room_details;
-select * from room_transaction;
 select * from wedding_hall_details;
 select * from meeting_hall_details;
+select * from room_transaction;
+select * from wedding_hall_transaction;
+select * from meeting_hall_transaction;
