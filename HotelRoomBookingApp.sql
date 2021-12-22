@@ -58,6 +58,8 @@ insert into wedding_hall_details(wedding_hall_number,category,location,price) va
 insert into wedding_hall_details(wedding_hall_number,category,location,price) values(2002,'standard','chennai',60000);
 insert into wedding_hall_details(wedding_hall_number,category,location,price) values(2003,'budget','chennai',40000);
 
+truncate table wedding_hall_details;
+select * from wedding_hall_details;
 
 
 
@@ -74,12 +76,12 @@ price number(10)
 select * from meeting_hall_details;
 truncate table meeting_hall_details;
 drop table meeting_hall_details;
-insert into meeting_hall_details(meeting_hall_number,category,location,price) values(2000,'premium','chennai',4000);
-insert into meeting_hall_details(meeting_hall_number,category,location,price) values(2001,'luxury','chennai',3000);
-insert into meeting_hall_details(meeting_hall_number,category,location,price) values(2002,'standard','chennai',2000);
-insert into meeting_hall_details(meeting_hall_number,category,location,price) values(2003,'budget','chennai',1000);
+insert into meeting_hall_details(meeting_hall_number,category,location,price) values(3000,'premium','chennai',4000);
+insert into meeting_hall_details(meeting_hall_number,category,location,price) values(3001,'luxury','chennai',3000);
+insert into meeting_hall_details(meeting_hall_number,category,location,price) values(3002,'standard','chennai',2000);
+insert into meeting_hall_details(meeting_hall_number,category,location,price) values(3003,'budget','chennai',1000);
 
-
+truncate table meeting_hall_details;
 
 
 create table room_transaction
@@ -90,12 +92,53 @@ check_out date,
 category varchar2(100),
 location varchar2(100),
 guest_id int,
-foreign key (guest_id) references guest(id)
+foreign key (guest_id) references guest_details(id)
 );
 
 select * from room_transaction;
 truncate table room_transaction;
 drop table room_transaction;
+
+
+
+
+
+create table wedding_hall_transaction
+(
+wedding_hall_number int,
+check_in date,
+check_out date,
+category varchar2(100),
+location varchar2(100),
+guest_id int,
+foreign key (guest_id) references guest_details(id)
+);
+
+select * from wedding_hall_transaction;
+truncate table wedding_hall_transaction;
+drop table wedding_hall_transaction;
+
+
+
+
+
+create table meeting_hall_transaction
+(
+meeting_hall_number int,
+check_in date,
+check_out date,
+category varchar2(100),
+location varchar2(100),
+guest_id int,
+foreign key (guest_id) references guest_details(id)
+);
+
+select * from meeting_hall_transaction;
+truncate table meeting_hall_transaction;
+drop table meeting_hall_transaction;
+
+
+
 
 
 
@@ -126,3 +169,9 @@ insert into admin values(1,'admin@tstays.com','web123');
 
 select room_number from room_details where status='vacant';
 commit;
+
+select * from guest_details;
+select * from room_details;
+select * from room_transaction;
+select * from wedding_hall_details;
+select * from meeting_hall_details;

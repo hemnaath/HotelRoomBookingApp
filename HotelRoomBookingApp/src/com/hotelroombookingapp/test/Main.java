@@ -9,8 +9,10 @@ import com.hotelroombookingapp.model.Admin;
 import com.hotelroombookingapp.model.Guest;
 import com.hotelroombookingapp.dao.AdminDao;
 import com.hotelroombookingapp.dao.GuestDao;
+import com.hotelroombookingapp.dao.MeetingHallTransactionDao;
 //import com.hotelroombookingapp.dao.RoomDetailsDao;
 import com.hotelroombookingapp.dao.RoomTransactionDao;
+import com.hotelroombookingapp.dao.WeddingHallTransactionDao;
 
 public class Main 
 {
@@ -176,6 +178,8 @@ public class Main
 									System.out.println("1.Room Booking\n2.Wedding Hall Booking\n3.Meeting Hall Booking\n4.Logout");
 									int bookingOption = Integer.parseInt(sc.nextLine());
 									RoomTransactionDao roomDao = new RoomTransactionDao();
+									WeddingHallTransactionDao weddingDao = new WeddingHallTransactionDao();
+									MeetingHallTransactionDao meetingDao = new MeetingHallTransactionDao();
 									switch(bookingOption)
 									{
 										case 1:
@@ -200,10 +204,46 @@ public class Main
 											}
 											break;
 										case 2:
-											
+											System.out.println("1.Book wedding hall\n2.Cancel wedding hall\n3.Update wedding hall\n4.Logout");
+											int weddingOption = Integer.parseInt(sc.nextLine());
+											switch(weddingOption)
+											{
+												case 1:
+													System.out.println("bookroom");
+													weddingDao.bookWeddingHall(guestObj);
+													break;
+												case 2:
+													System.out.println("cancelroom");
+													weddingDao.cancelWeddingHall(guestObj);
+													break;
+												case 3:
+													System.out.println("update room");
+													break;
+												case 4:
+													flag=false;
+													break;
+											}
 											break;
 										case 3:
-											
+											System.out.println("1.Book meeting hall\n2.Cancel meeting hall\n3.Update meeting hall\n4.Logout");
+											int meetingOption = Integer.parseInt(sc.nextLine());
+											switch(meetingOption)
+											{
+												case 1:
+													System.out.println("bookroom");
+													meetingDao.bookMeetingHall(guestObj);
+													break;
+												case 2:
+													System.out.println("cancelroom");
+													meetingDao.cancelMeetingHall(guestObj);
+													break;
+												case 3:
+													System.out.println("update room");
+													break;
+												case 4:
+													flag=false;
+													break;
+											}
 											break;
 										case 4:
 											flag=false;
