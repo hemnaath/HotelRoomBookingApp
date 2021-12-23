@@ -33,7 +33,7 @@ public class WeddingHallTransaction {
 	}
 	@Override
 	public String toString() {
-		return "WeddingHallDetails [roomNumber=" + roomNumber + ", checkIn=" + checkIn + ", checkOut="
+		return "WeddingHallDetails-> roomNumber=" + roomNumber + ", checkIn=" + checkIn + ", checkOut="
 				+ checkOut + ", category=" + category + ", location=" + location ;
 	}
 	@Override

@@ -240,6 +240,109 @@ public class RoomTransactionDao {
 	
 	
 	
+	public void addRoomAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter room number");
+		int roomNumber = Integer.parseInt(sc.nextLine());
+		System.out.println("enter room category");
+		String roomCategory = sc.nextLine();
+		System.out.println("enter room location");
+		String roomLocation = sc.nextLine();
+		System.out.println("enter room price");
+		int roomPrice = Integer.parseInt(sc.nextLine());
+		
+		
+		String addRoomQuery="insert into room_details(room_number,category,location,price) values(?,?,?,?)";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(addRoomQuery);
+		
+		pstmt.setInt(1,roomNumber);
+		pstmt.setString(2,roomCategory);
+		pstmt.setString(3,roomLocation);
+		pstmt.setInt(4,roomPrice);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("Room added");
+		}
+		else
+		{
+			System.out.println("Error");
+		}
+	}
+	
+	
+	
+	
+	public void deleteRoomAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter room number");
+		int roomNumber = Integer.parseInt(sc.nextLine());
+		
+		String deleteRoomQuery = "delete from room_details where room_number=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(deleteRoomQuery);
+		
+		pstmt.setInt(1, roomNumber);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("room deleted");
+		}
+		else
+		{
+			System.err.println("error");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	public void updateRoomAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter room number");
+		int roomNumber = Integer.parseInt(sc.nextLine());
+		System.out.println("enter room category");
+		String roomCategory = sc.nextLine();
+		System.out.println("enter room location");
+		String roomLocation = sc.nextLine();
+		System.out.println("enter room price");
+		int roomPrice = Integer.parseInt(sc.nextLine());
+		
+		String updateRoomQuery="update room_details set category=?,location=?,price=? where room_number=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(updateRoomQuery);
+		
+		pstmt.setString(1, roomCategory);
+		pstmt.setString(2, roomLocation);
+		pstmt.setInt(3, roomPrice);
+		pstmt.setInt(4, roomNumber);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("room updated");
+		}
+		else
+		{
+			System.err.println("error");
+		}
+	}
+	
 	
 
 }

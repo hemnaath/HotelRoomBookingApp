@@ -7,10 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import com.hotelroombookingapp.model.Guest;
+import com.hotelroombookingapp.model.MeetingHallTransaction;
+import com.hotelroombookingapp.model.WeddingHallTransaction;
 
 public class MeetingHallTransactionDao
 {
@@ -197,5 +201,149 @@ public class MeetingHallTransactionDao
 	}
 	
 		
+	
+	
+	
+	public List<MeetingHallTransaction> showMeetingHallBooking(Guest guestObj) throws SQLException	
+	{
+		int guestId=0;
+		List<MeetingHallTransaction> meetingHallBooking = new ArrayList<MeetingHallTransaction>();
+		
+		String showMeetingHallBookingQuery = "select * from meeting_hall_transaction where guest_id=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(showMeetingHallBookingQuery);
+		
+		GuestDao guestDaoObj = new GuestDao();
+		guestId=guestDaoObj.findGuestId(guestObj);
+		
+		pstmt.setInt(1, guestId);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next())
+		{
+			MeetingHallTransaction meetingHallTrans = new MeetingHallTransaction(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+				meetingHallBooking.add(meetingHallTrans);
+		}
+		
+		return meetingHallBooking;
+	}
+	
+	
+	
+	
+	
+	public void addMeetingHallAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter meeting hall number");
+		int meetingHallNumber = Integer.parseInt(sc.nextLine());
+		System.out.println("enter meeting hall category");
+		String meetingHallCategory = sc.nextLine();
+		System.out.println("enter meeting hall location");
+		String meetingHallLocation = sc.nextLine();
+		System.out.println("enter meeting hall price");
+		int meetingHallPrice = Integer.parseInt(sc.nextLine());
+		
+		
+		String addMeetingHallQuery="insert into meeting_hall_details(meeting_hall_number,category,location,price) values(?,?,?,?)";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(addMeetingHallQuery);
+		
+		pstmt.setInt(1,meetingHallNumber);
+		pstmt.setString(2,meetingHallCategory);
+		pstmt.setString(3,meetingHallLocation);
+		pstmt.setInt(4,meetingHallPrice);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("meeting hall added");
+		}
+		else
+		{
+			System.out.println("Error");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	public void deleteMeetingHallAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter wedding hall number");
+		int meetingHallNumber = Integer.parseInt(sc.nextLine());
+		
+		String deleteMeetingHallQuery = "delete from meeting_hall_details where meeting_hall_number=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(deleteMeetingHallQuery);
+		
+		pstmt.setInt(1, meetingHallNumber);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("meeting hall deleted");
+		}
+		else
+		{
+			System.err.println("error");
+		}
+	}
+	
+	
+	
+	
+	
+	public void updateMeetingHallAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter meeting room number");
+		int meetingHallNumber = Integer.parseInt(sc.nextLine());
+		System.out.println("enter meeting room category");
+		String meetingHallCategory = sc.nextLine();
+		System.out.println("enter meeting room location");
+		String meetingHallLocation = sc.nextLine();
+		System.out.println("enter meeting room price");
+		int meetingHallPrice = Integer.parseInt(sc.nextLine());
+		
+		String updateRoomQuery="update meeting_hall_details set category=?,location=?,price=? where meeting_hall_number=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(updateRoomQuery);
+		
+		pstmt.setString(1, meetingHallCategory);
+		pstmt.setString(2, meetingHallLocation);
+		pstmt.setInt(3, meetingHallPrice);
+		pstmt.setInt(4, meetingHallNumber);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("meeting hall updated");
+		}
+		else
+		{
+			System.err.println("error");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

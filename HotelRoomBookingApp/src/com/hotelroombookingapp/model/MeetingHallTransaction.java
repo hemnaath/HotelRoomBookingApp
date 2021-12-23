@@ -10,7 +10,7 @@ public class MeetingHallTransaction {
 	private String category;
 	private String location;
 	private Guest guestId;
-	public MeetingHallTransaction(int roomNumber, String madeBy, String checkIn, String checkOut, String category,
+	public MeetingHallTransaction(int roomNumber, String checkIn, String checkOut, String category,
 			String location, Guest guestId) {
 		super();
 		this.roomNumber = roomNumber;
@@ -20,8 +20,7 @@ public class MeetingHallTransaction {
 		this.location = location;
 		this.guestId = guestId;
 	}
-	public MeetingHallTransaction(int roomNumber, String madeBy, String checkIn, String checkOut, String category,
-			String location) {
+	public MeetingHallTransaction(int roomNumber, String checkIn, String checkOut, String category,String location) {
 		super();
 		this.roomNumber = roomNumber;
 		this.checkIn = checkIn;
@@ -35,8 +34,8 @@ public class MeetingHallTransaction {
 	}
 	@Override
 	public String toString() {
-		return "RoomDetails [roomNumber=" + roomNumber + ", checkIn=" + checkIn + ", checkOut="
-				+ checkOut + ", category=" + category + ", location=" + location + ", guestId=" + guestId + "]";
+		return "MeetingHallDetails-> roomNumber=" + roomNumber + ", checkIn=" + checkIn + ", checkOut="
+				+ checkOut + ", category=" + category + "location=" + location ;
 	}
 	@Override
 	public int hashCode() {

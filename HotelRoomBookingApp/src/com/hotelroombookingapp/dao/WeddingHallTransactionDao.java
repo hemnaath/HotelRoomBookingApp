@@ -237,5 +237,113 @@ public class WeddingHallTransactionDao
 	
 	
 	
+	public void addWeddingHallAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter wedding hall number");
+		int weedingHallNumber = Integer.parseInt(sc.nextLine());
+		System.out.println("enter wedding hall category");
+		String weddingHallCategory = sc.nextLine();
+		System.out.println("enter wedding hall location");
+		String weddingHallLocation = sc.nextLine();
+		System.out.println("enter wedding hall price");
+		int weddingHallPrice = Integer.parseInt(sc.nextLine());
+		
+		
+		String addWeddingHallQuery="insert into wedding_hall_details(wedding_hall_number,category,location,price) values(?,?,?,?)";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(addWeddingHallQuery);
+		
+		pstmt.setInt(1,weedingHallNumber);
+		pstmt.setString(2,weddingHallCategory);
+		pstmt.setString(3,weddingHallLocation);
+		pstmt.setInt(4,weddingHallPrice);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("wedding hall added");
+		}
+		else
+		{
+			System.out.println("Error");
+		}
+	}
+	
+	
+	
+	
+	
+	
+	public void deleteWeddingHallAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter wedding hall number");
+		int weddingHallNumber = Integer.parseInt(sc.nextLine());
+		
+		String deleteWeddingHallQuery = "delete from wedding_hall_details where wedding_hall_number=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(deleteWeddingHallQuery);
+		
+		pstmt.setInt(1, weddingHallNumber);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("wedding hall deleted");
+		}
+		else
+		{
+			System.err.println("error");
+		}
+	}
+	
+	
+	
+	
+	
+	public void updateWeddingHallAdmin() throws SQLException
+	{
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("enter wedding room number");
+		int weddingHallNumber = Integer.parseInt(sc.nextLine());
+		System.out.println("enter wedding room category");
+		String weddingHallCategory = sc.nextLine();
+		System.out.println("enter wedding room location");
+		String weddingHallLocation = sc.nextLine();
+		System.out.println("enter wedding room price");
+		int weddingHallPrice = Integer.parseInt(sc.nextLine());
+		
+		String updateRoomQuery="update wedding_hall_details set category=?,location=?,price=? where wedding_hall_number=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(updateRoomQuery);
+		
+		pstmt.setString(1, weddingHallCategory);
+		pstmt.setString(2, weddingHallLocation);
+		pstmt.setInt(3, weddingHallPrice);
+		pstmt.setInt(4, weddingHallNumber);
+		
+		int i=pstmt.executeUpdate();
+		if(i>0)
+		{
+			System.out.println("wedding hall updated");
+		}
+		else
+		{
+			System.err.println("error");
+		}
+	}
+	
+	
+	
+	
+	
+	
 	
 }

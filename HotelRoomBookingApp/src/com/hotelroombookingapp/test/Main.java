@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import com.hotelroombookingapp.model.Admin;
 import com.hotelroombookingapp.model.Guest;
+import com.hotelroombookingapp.model.MeetingHallTransaction;
 import com.hotelroombookingapp.model.RoomTransaction;
 import com.hotelroombookingapp.model.WeddingHallTransaction;
 import com.hotelroombookingapp.dao.AdminDao;
@@ -264,6 +265,11 @@ public class Main
 											{
 												System.out.println(weddingHallBooking.get(i));
 											}
+											List<MeetingHallTransaction> meetingHallBooking= meetingDao.showMeetingHallBooking(guestObj);
+											for(int i=0;i<meetingHallBooking.size();i++)
+											{
+												System.out.println(meetingHallBooking.get(i));
+											}
 											break;
 										case 5:
 											flag=false;
@@ -293,18 +299,50 @@ public class Main
 					if(adminObj!=null)
 					{
 						System.out.println("Welcome Admin");
-						System.out.println("1.List all Guests");
+						System.out.println("1.List all Guests\n2.Add Room\n3.Add Wedding Room\n4.Add Meeting Room"
+								+ "\n5.Delete Room\n6.Delete Wedding hall\n7.Delete Meeting hall\n8.update room"
+								+ "\n9.update wedding hall\n10.update meeting hall");
 						int adminChoice = Integer.parseInt(sc.nextLine());
+						GuestDao guestDaoObj = new GuestDao();
+						RoomTransactionDao roomTransDao = new RoomTransactionDao();
+						WeddingHallTransactionDao weddingTransDao = new WeddingHallTransactionDao();
+						MeetingHallTransactionDao meetingTransDao = new MeetingHallTransactionDao();
 						switch(adminChoice)
 						{
 						case 1:
 							//list all user
-							GuestDao guestDaoObj = new GuestDao();
 							List<Guest> guestList = guestDaoObj.showAllUser();
 							for(int i=0;i<guestList.size();i++)
 							{
 								System.out.println(guestList.get(i));
 							}
+							break;
+						case 2:
+							roomTransDao.addRoomAdmin();
+							break;
+						case 3:
+							weddingTransDao.addWeddingHallAdmin();
+							break;
+						case 4:
+							meetingTransDao.addMeetingHallAdmin();
+							break;
+						case 5:
+							roomTransDao.deleteRoomAdmin();
+							break;
+						case 6:
+							weddingTransDao.deleteWeddingHallAdmin();
+							break;
+						case 7:
+							meetingTransDao.deleteMeetingHallAdmin();
+							break;
+						case 8:
+							roomTransDao.updateRoomAdmin();
+							break;
+						case 9:
+							weddingTransDao.updateWeddingHallAdmin();
+							break;
+						case 10:
+							meetingTransDao.updateMeetingHallAdmin();
 							break;
 						}
 					}

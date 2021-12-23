@@ -35,7 +35,7 @@ public class RoomTransaction {
 	}
 	@Override
 	public String toString() {
-		return "RoomDetails [roomNumber=" + roomNumber + ", checkIn=" + checkIn + ", checkOut="
+		return "RoomDetails->roomNumber=" + roomNumber + ", checkIn=" + checkIn + " ,checkOut="
 				+ checkOut + ", category=" + category + ", location=" + location ;
 	}
 	@Override
