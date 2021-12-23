@@ -7,10 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import com.hotelroombookingapp.model.Guest;
+import com.hotelroombookingapp.model.RoomTransaction;
+import com.hotelroombookingapp.model.WeddingHallTransaction;
 
 public class WeddingHallTransactionDao
 {
@@ -196,6 +200,42 @@ public class WeddingHallTransactionDao
 		}
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	public List<WeddingHallTransaction> showWeddingHallBooking(Guest guestObj) throws SQLException	
+	{
+		int guestId=0;
+		List<WeddingHallTransaction> weddingHallBooking = new ArrayList<WeddingHallTransaction>();
+		
+		String showWeddingHallBookingQuery = "select * from wedding_hall_transaction where guest_id=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(showWeddingHallBookingQuery);
+		
+		GuestDao guestDaoObj = new GuestDao();
+		guestId=guestDaoObj.findGuestId(guestObj);
+		
+		pstmt.setInt(1, guestId);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next())
+		{
+			WeddingHallTransaction weddingHallTrans = new WeddingHallTransaction(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+			weddingHallBooking.add(weddingHallTrans);
+		}
+		
+		return weddingHallBooking;
+	}
+	
+	
+	
+	
 	
 	
 }

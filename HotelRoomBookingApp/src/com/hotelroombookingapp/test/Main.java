@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 import com.hotelroombookingapp.model.Admin;
 import com.hotelroombookingapp.model.Guest;
+import com.hotelroombookingapp.model.RoomTransaction;
+import com.hotelroombookingapp.model.WeddingHallTransaction;
 import com.hotelroombookingapp.dao.AdminDao;
 import com.hotelroombookingapp.dao.GuestDao;
 import com.hotelroombookingapp.dao.MeetingHallTransactionDao;
@@ -176,7 +178,7 @@ public class Main
 								System.out.println("Welcome "+guestObj.getFirstName());							
 								while(flag)
 								{
-									System.out.println("1.Room Booking\n2.Wedding Hall Booking\n3.Meeting Hall Booking\n4.Logout");
+									System.out.println("1.Room Booking\n2.Wedding Hall Booking\n3.Meeting Hall Booking\n4.My Bookings\n5.Logout");
 									int bookingOption = Integer.parseInt(sc.nextLine());
 									RoomTransactionDao roomDao = new RoomTransactionDao();
 									WeddingHallTransactionDao weddingDao = new WeddingHallTransactionDao();
@@ -251,6 +253,19 @@ public class Main
 											}
 											break;
 										case 4:
+											System.out.println("my bookings");
+											List<RoomTransaction> roomBooking=roomDao.showRoomBooking(guestObj);
+											for(int i=0;i<roomBooking.size();i++)
+											{
+												System.out.println(roomBooking.get(i));
+											}
+											List<WeddingHallTransaction> weddingHallBooking= weddingDao.showWeddingHallBooking(guestObj);
+											for(int i=0;i<weddingHallBooking.size();i++)
+											{
+												System.out.println(weddingHallBooking.get(i));
+											}
+											break;
+										case 5:
 											flag=false;
 											break;
 									}

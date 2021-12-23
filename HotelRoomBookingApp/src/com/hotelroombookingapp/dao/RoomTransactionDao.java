@@ -7,10 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 import com.hotelroombookingapp.model.Guest;
+import com.hotelroombookingapp.model.RoomDetails;
+import com.hotelroombookingapp.model.RoomTransaction;
 
 public class RoomTransactionDao {
 	
@@ -202,6 +206,40 @@ public class RoomTransactionDao {
 		}
 		
 	}
+	
+	
+	
+	
+	
+	public List<RoomTransaction> showRoomBooking(Guest guestObj) throws SQLException	
+	{
+		int guestId=0;
+		List<RoomTransaction> roomBooking = new ArrayList<RoomTransaction>();
+		
+		String showRoomBookingQuery = "select * from room_transaction where guest_id=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt = conn.prepareStatement(showRoomBookingQuery);
+		
+		GuestDao guestDaoObj = new GuestDao();
+		guestId=guestDaoObj.findGuestId(guestObj);
+		
+		pstmt.setInt(1, guestId);
+		
+		ResultSet rs = pstmt.executeQuery();
+		
+		while(rs.next())
+		{
+			RoomTransaction roomTrans = new RoomTransaction(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
+			roomBooking.add(roomTrans);
+		}
+		
+		return roomBooking;
+	}
+	
+	
+	
+	
 	
 
 }

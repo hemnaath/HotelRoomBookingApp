@@ -10,7 +10,7 @@ public class RoomTransaction {
 	private String category;
 	private String location;
 	private Guest guestId;
-	public RoomTransaction(int roomNumber, String madeBy, String checkIn, String checkOut, String category,
+	public RoomTransaction(int roomNumber,  String checkIn, String checkOut, String category,
 			String location, Guest guestId) {
 		super();
 		this.roomNumber = roomNumber;
@@ -20,6 +20,15 @@ public class RoomTransaction {
 		this.location = location;
 		this.guestId = guestId;
 	}
+	public RoomTransaction(int roomNumber,  String checkIn, String checkOut, String category,
+			String location) {
+		super();
+		this.roomNumber = roomNumber;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.category = category;
+		this.location = location;
+	}
 	public RoomTransaction() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -27,7 +36,7 @@ public class RoomTransaction {
 	@Override
 	public String toString() {
 		return "RoomDetails [roomNumber=" + roomNumber + ", checkIn=" + checkIn + ", checkOut="
-				+ checkOut + ", category=" + category + ", location=" + location + ", guestId=" + guestId + "]";
+				+ checkOut + ", category=" + category + ", location=" + location ;
 	}
 	@Override
 	public int hashCode() {

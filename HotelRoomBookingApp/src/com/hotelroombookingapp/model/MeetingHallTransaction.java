@@ -20,6 +20,15 @@ public class MeetingHallTransaction {
 		this.location = location;
 		this.guestId = guestId;
 	}
+	public MeetingHallTransaction(int roomNumber, String madeBy, String checkIn, String checkOut, String category,
+			String location) {
+		super();
+		this.roomNumber = roomNumber;
+		this.checkIn = checkIn;
+		this.checkOut = checkOut;
+		this.category = category;
+		this.location = location;
+	}
 	public MeetingHallTransaction() {
 		super();
 		// TODO Auto-generated constructor stub

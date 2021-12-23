@@ -17,6 +17,7 @@ public class WeddingHallDetails {
 		this.location = location;
 		this.price = price;
 	}
+	
 	public WeddingHallDetails() {
 		super();
 		// TODO Auto-generated constructor stub
