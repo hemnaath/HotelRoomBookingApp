@@ -113,7 +113,6 @@ select * from wedding_hall_transaction;
 select * from meeting_hall_transaction;
 select * from admin;
 select * from payment;
-
 truncate table room_transaction;
 truncate table wedding_hall_transaction;
 truncate table meeting_hall_transaction;
