@@ -27,9 +27,9 @@ public class RoomTransactionDao {
 		System.out.println("enter check-out date");
 		Date checkOut = sdf.parse(sc.nextLine());
 		System.out.println("enter category");
-		System.out.println("1.Premium\n2.luxury\n3.standard\n4.budget");
+		System.out.println("1.premium\n2.luxury\n3.standard\n4.budget");
 		int categoryChoice = Integer.parseInt(sc.nextLine());
-		String category = (categoryChoice==1)?"Premium":(categoryChoice==2)?"luxury":(categoryChoice==3)?"standard":"budget";
+		String category = (categoryChoice==1)?"premium":(categoryChoice==2)?"luxury":(categoryChoice==3)?"standard":"budget";
 		System.out.println("enter location");
 		String location = sc.nextLine();
 		
@@ -133,7 +133,7 @@ public class RoomTransactionDao {
 		System.out.println("enter check-out date");
 		Date checkOut = sdf.parse(sc.nextLine());
 		System.out.println("enter category");
-		System.out.println("1.Premium\n2.luxury\n3.standard\n4.budget");
+		System.out.println("1.premium\n2.luxury\n3.standard\n4.budget");
 		int categoryChoice = Integer.parseInt(sc.nextLine());
 		String category = (categoryChoice==1)?"Premium":(categoryChoice==2)?"luxury":(categoryChoice==3)?"standard":"budget";
 		System.out.println("enter location");
@@ -164,9 +164,9 @@ public class RoomTransactionDao {
 		PreparedStatement pstmt5 = conn.prepareStatement(updateRoomQuery4);
 		
 		pstmt2.setString(1, category);
-		System.out.println(category);
+//		System.out.println(category);
 		pstmt2.setString(2, location);
-		System.out.println(location);
+//		System.out.println(location);
 
 		
 		ResultSet rs = pstmt2.executeQuery();
@@ -175,9 +175,7 @@ public class RoomTransactionDao {
 			vacantRoomNumber=rs.getInt(1);
 			System.out.println(rs.getInt(1));
 		}
-		System.out.println(vacantRoomNumber);
-		
-		//pstmt2.executeQuery();
+//		System.out.println(vacantRoomNumber);
 		
 		GuestDao guestDaoObj = new GuestDao();
 		guestId=guestDaoObj.findGuestId(guestObj);
@@ -189,14 +187,14 @@ public class RoomTransactionDao {
 		pstmt3.setString(5, location);
 		pstmt3.setInt(6, guestId);
 		
-		System.out.println(pstmt3.executeUpdate()>0?"new Room num updated":"new room num not updated");
+		pstmt3.executeUpdate();
 
 		
 		pstmt4.setInt(1, roomNumber);
-		System.out.println(pstmt4.executeUpdate()>0?"old Room updated":"old room not updated");
+		pstmt4.executeUpdate();
 		
 		pstmt5.setInt(1, vacantRoomNumber);
-		System.out.println(pstmt5.executeUpdate()>0?"new Room updated":"new room  not updated");
+		pstmt5.executeUpdate();
 		
 		if(i>0)
 		{

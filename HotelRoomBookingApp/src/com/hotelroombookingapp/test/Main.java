@@ -221,6 +221,7 @@ public class Main
 													break;
 												case 3:
 													System.out.println("update room");
+													weddingDao.updateWeddingHall(guestObj);
 													break;
 												case 4:
 													flag=false;
@@ -242,6 +243,7 @@ public class Main
 													break;
 												case 3:
 													System.out.println("update room");
+													meetingDao.updateMeetingHall(guestObj);
 													break;
 												case 4:
 													flag=false;

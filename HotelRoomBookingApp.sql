@@ -119,3 +119,4 @@ truncate table wedding_hall_transaction;
 truncate table meeting_hall_transaction;
 
 select room_number from room_details where status='vacant' and category='premium' and location='chennai';
+commit;

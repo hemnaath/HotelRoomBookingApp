@@ -103,7 +103,7 @@ public class GuestDao {
 	public List<Guest> showAllUser()
 	{
 		List<Guest> guestList = new ArrayList<Guest>();
-		String allUserQuery = "select * from guest";
+		String allUserQuery = "select * from guest_details";
 		
 		Connection conn = ConnectionUtil.getDbConnection();
 		try {

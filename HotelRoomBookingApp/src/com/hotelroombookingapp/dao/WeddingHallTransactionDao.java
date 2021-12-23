@@ -29,7 +29,7 @@ public class WeddingHallTransactionDao
 		System.out.println("enter category");
 		System.out.println("1.Premium\n2.luxury\n3.standard\n4.budget");
 		int categoryChoice = Integer.parseInt(sc.nextLine());
-		String category = (categoryChoice==1)?"Premium":(categoryChoice==2)?"luxury":(categoryChoice==3)?"standard":"budget";
+		String category = (categoryChoice==1)?"premium":(categoryChoice==2)?"luxury":(categoryChoice==3)?"standard":"budget";
 		System.out.println("enter location");
 		String location = sc.nextLine();
 		
@@ -107,6 +107,94 @@ public class WeddingHallTransactionDao
 		{
 			System.out.println("Invalid Room");
 		}
+	}
+	
+	
+	
+	
+	public void updateWeddingHall(Guest guestObj) throws ParseException, SQLException
+	{
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		Scanner sc = new Scanner(System.in);
+		int vacantWeddingRoomNumber=0;
+		int i=0;
+		int guestId=0;
+		
+		System.out.println("enter wedding room number");
+		int weddingRoomNumber = Integer.parseInt(sc.nextLine());
+		System.out.println("enter check-in date");
+		Date checkIn = sdf.parse(sc.nextLine());
+		System.out.println("enter check-out date");
+		Date checkOut = sdf.parse(sc.nextLine());
+		System.out.println("enter category");
+		System.out.println("1.premium\n2.luxury\n3.standard\n4.budget");
+		int categoryChoice = Integer.parseInt(sc.nextLine());
+		String category = (categoryChoice==1)?"Premium":(categoryChoice==2)?"luxury":(categoryChoice==3)?"standard":"budget";
+		System.out.println("enter location");
+		String location = sc.nextLine();
+		
+		String updateRoomQuery="update wedding_hall_transaction set check_in=?,check_out=?,category=?,location=? where wedding_hall_number=?";
+		
+		Connection conn = ConnectionUtil.getDbConnection();
+		PreparedStatement pstmt1 = conn.prepareStatement(updateRoomQuery);
+		
+		pstmt1.setDate(1, new java.sql.Date(checkIn.getTime()));
+		pstmt1.setDate(2, new java.sql.Date(checkOut.getTime()));
+		pstmt1.setString(3, category);
+		pstmt1.setString(4, location);
+		pstmt1.setInt(5, weddingRoomNumber);
+		
+		pstmt1.executeUpdate();
+
+		
+		String fetchVacantRoom="select wedding_hall_number from wedding_hall_details where status='vacant' and category=? and location=?";
+		String updateRoomQuery2="update wedding_hall_transaction set wedding_hall_number=? where check_in=? and check_out=? and category=? and location=? and guest_id=?";
+		String updateRoomQuery3 = "update wedding_hall_details set status='vacant' where wedding_hall_number=?";
+		String updateRoomQuery4 = "update wedding_hall_details set status='occupied' where wedding_hall_number=?";
+		
+		PreparedStatement pstmt2 = conn.prepareStatement(fetchVacantRoom);
+		PreparedStatement pstmt3 = conn.prepareStatement(updateRoomQuery2);
+		PreparedStatement pstmt4 = conn.prepareStatement(updateRoomQuery3);
+		PreparedStatement pstmt5 = conn.prepareStatement(updateRoomQuery4);
+		
+		pstmt2.setString(1, category);
+//		System.out.println(category);
+		pstmt2.setString(2, location);
+//		System.out.println(location);
+
+		
+		ResultSet rs = pstmt2.executeQuery();
+		if(rs.next())
+		{
+			vacantWeddingRoomNumber=rs.getInt(1);
+			System.out.println(rs.getInt(1));
+		}
+//		System.out.println(vacantRoomNumber);
+		
+		GuestDao guestDaoObj = new GuestDao();
+		guestId=guestDaoObj.findGuestId(guestObj);
+		
+		pstmt3.setInt(1, vacantWeddingRoomNumber);
+		pstmt3.setDate(2, new java.sql.Date(checkIn.getTime()));
+		pstmt3.setDate(3, new java.sql.Date(checkOut.getTime()));
+		pstmt3.setString(4, category);
+		pstmt3.setString(5, location);
+		pstmt3.setInt(6, guestId);
+		
+		pstmt3.executeUpdate();
+
+		
+		pstmt4.setInt(1, weddingRoomNumber);
+		pstmt4.executeUpdate();
+		
+		pstmt5.setInt(1, vacantWeddingRoomNumber);
+		pstmt5.executeUpdate();
+		
+		if(i>0)
+		{
+			System.out.println("Updated Room details");
+		}
+		
 	}
 	
 	
