@@ -289,7 +289,8 @@ public class Main
 							break;
 					}
 					break;
-				case 2:						
+				case 2:			
+					boolean adminFlag=true;
 					System.out.println("Enter Email-id");
 					String adminMail = sc.nextLine();
 					System.out.println("Enter Password");
@@ -298,6 +299,7 @@ public class Main
 					Admin adminObj=adao.loginAdmin(adminMail, adminPassword);
 					if(adminObj!=null)
 					{
+						do {
 						System.out.println("Welcome Admin");
 						System.out.println("1.List all Guests\n2.Add Room\n3.Add Wedding Room\n4.Add Meeting Room"
 								+ "\n5.Delete Room\n6.Delete Wedding hall\n7.Delete Meeting hall\n8.update room"
@@ -345,6 +347,7 @@ public class Main
 							meetingTransDao.updateMeetingHallAdmin();
 							break;
 						}
+						}while(adminFlag==true);
 					}
 					else
 					{
