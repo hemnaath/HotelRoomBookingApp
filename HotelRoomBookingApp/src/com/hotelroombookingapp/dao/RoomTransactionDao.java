@@ -12,13 +12,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import com.hotelroombookingapp.message.Mail;
+import com.hotelroombookingapp.message.Mailer;
 import com.hotelroombookingapp.model.Guest;
 import com.hotelroombookingapp.model.RoomDetails;
 import com.hotelroombookingapp.model.RoomTransaction;
 
 public class RoomTransactionDao {
 	
-	public void bookRoom(Guest guestObj) throws SQLException, ParseException
+	public RoomTransaction bookRoom(Guest guestObj) throws SQLException, ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Scanner sc = new Scanner(System.in);
@@ -52,9 +54,12 @@ public class RoomTransactionDao {
 		pstmt1.setString(2, location);
 		
 		ResultSet rs = pstmt1.executeQuery();
+		
+		RoomTransaction roomTransObj = null;
 		if(rs.next())
 		{
 			vacantRoomNumber=rs.getInt(1);
+			//roomTransObj= new RoomTransaction(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5));
 		}
 //		System.out.println(vacantRoomNumber);
 		PreparedStatement pstmt2 = conn.prepareStatement(bookRoomQuery);
@@ -75,46 +80,55 @@ public class RoomTransactionDao {
 		pstmt3.setInt(1, vacantRoomNumber);
 		
 //		System.out.println(bookRoomQuery);
-
+		roomTransObj= new RoomTransaction(vacantRoomNumber,String.valueOf(checkIn),String.valueOf(checkOut),category,location);
 		
 		i = pstmt2.executeUpdate();
 		if(i>0)
 		{
 			System.out.println("Room booked");
 			pstmt3.executeUpdate();
+			
+			Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.bookRoomMail(roomTransObj));
 		}
 		else
 		{
 			System.out.println("Error in room booking");
 		}
+		return roomTransObj;
 	}
 	
 	
 	
 	
 	
-	public void cancelRoom(Guest guestObj) throws SQLException
+	public RoomTransaction cancelRoom(Guest guestObj) throws SQLException
 	{
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter room number");
 		int roomNumber = Integer.parseInt(sc.nextLine());
+		RoomTransaction roomTransObj = null;
 		
 		String updateCancelRoomQuery = "update room_details set status='vacant' where room_number=?";
 		Connection conn = ConnectionUtil.getDbConnection();
 		PreparedStatement pstmt = conn.prepareStatement(updateCancelRoomQuery);
 				
 		pstmt.setInt(1, roomNumber);
+		
+		roomTransObj = new RoomTransaction(roomNumber,null,null,null,null);
 				
 		int i=pstmt.executeUpdate();
 		if(i>0)
 		{
 			System.out.println("Booking Cancelled");
+			Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.cancelRoomMail(roomTransObj));
+
 		}
 		else
 		{
 			System.out.println("Invalid Room");
 		}
+		return roomTransObj;
 	}
 	
 	
@@ -122,7 +136,7 @@ public class RoomTransactionDao {
 	
 	
 	
-	public void updateRoom(Guest guestObj) throws ParseException, SQLException
+	public RoomTransaction updateRoom(Guest guestObj) throws ParseException, SQLException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Scanner sc = new Scanner(System.in);
@@ -192,6 +206,9 @@ public class RoomTransactionDao {
 		pstmt3.setInt(6, guestId);
 		
 		pstmt3.executeUpdate();
+		RoomTransaction roomTransObj = new RoomTransaction(vacantRoomNumber,String.valueOf(checkIn),String.valueOf(checkOut),category,location);
+		Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.updateRoomMail(roomTransObj));
+
 
 		
 		pstmt4.setInt(1, roomNumber);
@@ -204,6 +221,7 @@ public class RoomTransactionDao {
 		{
 			System.out.println("Updated Room details");
 		}
+		return roomTransObj;
 		
 	}
 	

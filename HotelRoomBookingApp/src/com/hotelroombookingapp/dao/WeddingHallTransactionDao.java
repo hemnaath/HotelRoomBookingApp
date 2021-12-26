@@ -12,13 +12,15 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import com.hotelroombookingapp.message.Mail;
+import com.hotelroombookingapp.message.Mailer;
 import com.hotelroombookingapp.model.Guest;
 import com.hotelroombookingapp.model.RoomTransaction;
 import com.hotelroombookingapp.model.WeddingHallTransaction;
 
 public class WeddingHallTransactionDao
 {
-	public void bookWeddingHall(Guest guestObj) throws SQLException, ParseException
+	public WeddingHallTransaction bookWeddingHall(Guest guestObj) throws SQLException, ParseException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Scanner sc = new Scanner(System.in);
@@ -72,24 +74,32 @@ public class WeddingHallTransactionDao
 		pstmt3.setInt(1, vacantWeddingRoomNumber);
 		
 //		System.out.println(bookRoomQuery);
+		WeddingHallTransaction weddingHallTransObj = new WeddingHallTransaction(vacantWeddingRoomNumber,String.valueOf(checkIn),
+				String.valueOf(checkOut),category,location);
 
 		
 		i = pstmt2.executeUpdate();
+	
+
+		
 		if(i>0)
 		{
 			System.out.println("Weddings Hall booked");
 			pstmt3.executeUpdate();
+			Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.bookWeddingHallMail(weddingHallTransObj));
+
 		}
 		else
 		{
 			System.out.println("Error in booking");
 		}
+		return weddingHallTransObj;
 
 	}
 	
 	
 	
-	public void cancelWeddingHall(Guest guestObj) throws SQLException
+	public WeddingHallTransaction cancelWeddingHall(Guest guestObj) throws SQLException
 	{
 		
 		Scanner sc = new Scanner(System.in);
@@ -101,22 +111,31 @@ public class WeddingHallTransactionDao
 		PreparedStatement pstmt = conn.prepareStatement(updateCancelWeddingRoomQuery);
 				
 		pstmt.setInt(1, weddingRoomNumber);
+		
+		WeddingHallTransaction weddingHallTransObj = new WeddingHallTransaction(weddingRoomNumber,null,null,null,null);
+
 				
 		int i=pstmt.executeUpdate();
+		
+
+		
 		if(i>0)
 		{
 			System.out.println("Booking Cancelled");
+			Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.cancelWeddingHallMail(weddingHallTransObj));
+
 		}
 		else
 		{
 			System.out.println("Invalid Room");
 		}
+		return weddingHallTransObj;
 	}
 	
 	
 	
 	
-	public void updateWeddingHall(Guest guestObj) throws ParseException, SQLException
+	public WeddingHallTransaction updateWeddingHall(Guest guestObj) throws ParseException, SQLException
 	{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Scanner sc = new Scanner(System.in);
@@ -186,6 +205,11 @@ public class WeddingHallTransactionDao
 		pstmt3.setInt(6, guestId);
 		
 		pstmt3.executeUpdate();
+		
+		WeddingHallTransaction weddingHallTransObj = new WeddingHallTransaction(vacantWeddingRoomNumber,String.valueOf(checkIn),String.valueOf(checkOut)
+				,category,location);
+		Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.updateWeddingHallMail(weddingHallTransObj));
+
 
 		
 		pstmt4.setInt(1, weddingRoomNumber);
@@ -198,6 +222,7 @@ public class WeddingHallTransactionDao
 		{
 			System.out.println("Updated Room details");
 		}
+		return weddingHallTransObj;
 		
 	}
 	

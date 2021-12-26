@@ -120,3 +120,6 @@ truncate table meeting_hall_transaction;
 
 
 commit;
+
+update room_details set status='vacant' where room_number=1000;
+insert into room_transaction values(1000,'12-12-2021','12-12-2021','premium','location',161);

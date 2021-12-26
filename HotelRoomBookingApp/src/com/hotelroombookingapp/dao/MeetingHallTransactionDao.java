@@ -12,8 +12,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import com.hotelroombookingapp.message.Mail;
+import com.hotelroombookingapp.message.Mailer;
 import com.hotelroombookingapp.model.Guest;
 import com.hotelroombookingapp.model.MeetingHallTransaction;
+import com.hotelroombookingapp.model.RoomTransaction;
 import com.hotelroombookingapp.model.WeddingHallTransaction;
 
 public class MeetingHallTransactionDao
@@ -71,6 +74,9 @@ public class MeetingHallTransactionDao
 		
 		pstmt3.setInt(1, vacantMeetingRoomNumber);
 		
+		MeetingHallTransaction meetingHallTransObj= new MeetingHallTransaction(vacantMeetingRoomNumber,String.valueOf(checkIn),String.valueOf(checkOut),category,location);
+
+		
 //		System.out.println(bookRoomQuery);
 
 		
@@ -79,6 +85,8 @@ public class MeetingHallTransactionDao
 		{
 			System.out.println("Meeting Hall booked");
 			pstmt3.executeUpdate();
+			Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.bookMeetingHallMail(meetingHallTransObj));
+
 		}
 		else
 		{
@@ -89,7 +97,7 @@ public class MeetingHallTransactionDao
 	
 	
 	
-	public void cancelMeetingHall(Guest guestObj) throws SQLException
+	public MeetingHallTransaction cancelMeetingHall(Guest guestObj) throws SQLException
 	{
 		
 		Scanner sc = new Scanner(System.in);
@@ -101,16 +109,22 @@ public class MeetingHallTransactionDao
 		PreparedStatement pstmt = conn.prepareStatement(updateCancelRoomQuery);
 				
 		pstmt.setInt(1, meetingRoomNumber);
+		
+		MeetingHallTransaction meetingHallTransObj= new MeetingHallTransaction(meetingRoomNumber,null,null,null,null);
+
 				
 		int i=pstmt.executeUpdate();
 		if(i>0)
 		{
 			System.out.println("Booking Cancelled");
+			Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.cancelMeetingHallMail(meetingHallTransObj));
+
 		}
 		else
 		{
 			System.out.println("Invalid Room");
 		}
+		return meetingHallTransObj;
 	}
 	
 	
@@ -185,6 +199,10 @@ public class MeetingHallTransactionDao
 		pstmt3.setInt(6, guestId);
 		
 		pstmt3.executeUpdate();
+		
+		MeetingHallTransaction meetingHallTransObj = new MeetingHallTransaction(vacantMeetingHallNumber,String.valueOf(checkIn),String.valueOf(checkOut),category,location);
+		Mailer.send("hemnaathrsurya@gmail.com", "hemnaath@18!!", guestObj.getEmail(), "Hotel Room Booking Application", Mail.updateMeetingHallMail(meetingHallTransObj));
+
 
 		
 		pstmt4.setInt(1, meetingHallNumber);

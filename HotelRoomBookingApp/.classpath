@@ -7,5 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/hemn2911/Downloads/ojdbc11-full/ojdbc11-full/ojdbc11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hemn2911/Downloads/activation.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hemn2911/Downloads/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hemn2911/Downloads/smtp-1.4.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
