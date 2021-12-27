@@ -28,11 +28,25 @@ public class MeetingHallTransactionDao
 		int vacantMeetingRoomNumber=0;
 		int guestId=0;
 		int i=0;
+		boolean dateFlag=true;
+		Date checkIn;
+		Date checkOut;
 		
+		do {
 		System.out.println("enter check-in date");
-		Date checkIn = sdf.parse(sc.nextLine());
+		checkIn = sdf.parse(sc.nextLine());
 		System.out.println("enter check-out date");
-		Date checkOut = sdf.parse(sc.nextLine());
+		checkOut = sdf.parse(sc.nextLine());
+		if(checkIn.after(checkOut))
+		{
+			System.out.println("Invalid Date Format");
+			dateFlag=false;
+		}
+		else
+		{
+			dateFlag=true;
+		}
+		}while(dateFlag!=true);
 		System.out.println("enter category");
 		System.out.println("1.Premium\n2.luxury\n3.standard\n4.budget");
 		int categoryChoice = Integer.parseInt(sc.nextLine());
@@ -136,13 +150,27 @@ public class MeetingHallTransactionDao
 		int vacantMeetingHallNumber=0;
 		int i=0;
 		int guestId=0;
+		boolean dateFlag=true;
+		Date checkIn;
+		Date checkOut;
 		
 		System.out.println("enter meeting hall number");
 		int meetingHallNumber = Integer.parseInt(sc.nextLine());
+		do {
 		System.out.println("enter check-in date");
-		Date checkIn = sdf.parse(sc.nextLine());
+		checkIn = sdf.parse(sc.nextLine());
 		System.out.println("enter check-out date");
-		Date checkOut = sdf.parse(sc.nextLine());
+		checkOut = sdf.parse(sc.nextLine());
+		if(checkIn.after(checkOut))
+		{
+			System.out.println("Invalid Date Format");
+			dateFlag=false;
+		}
+		else
+		{
+			dateFlag=true;
+		}
+		}while(dateFlag!=true);
 		System.out.println("enter category");
 		System.out.println("1.Premium\n2.luxury\n3.standard\n4.budget");
 		int categoryChoice = Integer.parseInt(sc.nextLine());
