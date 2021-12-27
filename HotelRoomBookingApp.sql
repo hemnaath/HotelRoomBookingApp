@@ -86,12 +86,14 @@ guest_id int,
 foreign key (guest_id) references guest_details(id)
 );
 
-create table payment(
+create table payment_details(
 id int primary key,
-wallet_balance number(100),
+card_number number(16),
 guest_id int,
-foreign key (guest_id) references guest (id)
+foreign key (guest_id) references guest_details (id)
 );
+
+desc hotel_payments;
 
 create table admin
 (
@@ -121,5 +123,4 @@ truncate table meeting_hall_transaction;
 
 commit;
 
-update room_details set status='vacant' where room_number=1000;
-insert into room_transaction values(1000,'12-12-2021','12-12-2021','premium','location',161);
+

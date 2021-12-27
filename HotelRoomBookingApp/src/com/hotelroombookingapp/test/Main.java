@@ -13,6 +13,7 @@ import com.hotelroombookingapp.model.WeddingHallTransaction;
 import com.hotelroombookingapp.dao.AdminDao;
 import com.hotelroombookingapp.dao.GuestDao;
 import com.hotelroombookingapp.dao.MeetingHallTransactionDao;
+import com.hotelroombookingapp.dao.PaymentDao;
 //import com.hotelroombookingapp.dao.RoomDetailsDao;
 import com.hotelroombookingapp.dao.RoomTransactionDao;
 import com.hotelroombookingapp.dao.WeddingHallTransactionDao;
@@ -184,6 +185,7 @@ public class Main
 									RoomTransactionDao roomDao = new RoomTransactionDao();
 									WeddingHallTransactionDao weddingDao = new WeddingHallTransactionDao();
 									MeetingHallTransactionDao meetingDao = new MeetingHallTransactionDao();
+									PaymentDao payDao = new PaymentDao();
 									switch(bookingOption)
 									{
 										case 1:
@@ -194,6 +196,8 @@ public class Main
 												case 1:
 													System.out.println("bookroom");
 													roomDao.bookRoom(guestObj);
+													payDao.payment(guestObj);
+													System.out.println("PAYMENT SUCCESSFULL");
 													break;
 												case 2:
 													System.out.println("cancelroom");
@@ -217,6 +221,8 @@ public class Main
 												case 1:
 													System.out.println("bookroom");
 													weddingDao.bookWeddingHall(guestObj);
+													payDao.payment(guestObj);
+													System.out.println("PAYMENT SUCCESSFULL");
 													break;
 												case 2:
 													System.out.println("cancelroom");
@@ -239,6 +245,8 @@ public class Main
 												case 1:
 													System.out.println("bookroom");
 													meetingDao.bookMeetingHall(guestObj);
+													payDao.payment(guestObj);
+													System.out.println("PAYMENT SUCCESSFULL");
 													break;
 												case 2:
 													System.out.println("cancelroom");

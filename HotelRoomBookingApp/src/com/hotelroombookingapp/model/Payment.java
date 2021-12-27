@@ -5,40 +5,28 @@ import java.util.Objects;
 public class Payment 
 {
 	private int id;
-	private String modeOfPayment;
-	private String dateOfPay;
-	private Guest guest;
-	
-	public Payment(int id, String modeOfPayment, String dateOfPay, Guest guest) 
-	{
+	private long cardNumber;
+	private Guest guestId;
+	public Payment(int id, long cardNumber, Guest guestId) {
 		super();
 		this.id = id;
-		this.modeOfPayment = modeOfPayment;
-		this.dateOfPay = dateOfPay;
-		this.guest = guest;
+		this.cardNumber = cardNumber;
+		this.guestId = guestId;
 	}
-	
-	public Payment() 
-	{
+	public Payment() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
-	
 	@Override
-	public String toString() 
-	{
-		return "Payment [id=" + id + "\nmodeOfPayment=" + modeOfPayment + "\ndateOfPay=" + dateOfPay + "\nguest="
-				+ guest + "]";
+	public String toString() {
+		return "Payment [id=" + id + ", cardNumber=" + cardNumber + ", guestId=" + guestId + "]";
 	}
-	
 	@Override
-	public int hashCode() 
-	{
-		return Objects.hash(dateOfPay, guest, id, modeOfPayment);
+	public int hashCode() {
+		return Objects.hash(cardNumber, guestId, id);
 	}
-	
 	@Override
-	public boolean equals(Object obj) 
-	{
+	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -46,33 +34,26 @@ public class Payment
 		if (getClass() != obj.getClass())
 			return false;
 		Payment other = (Payment) obj;
-		return Objects.equals(dateOfPay, other.dateOfPay) && Objects.equals(guest, other.guest) && id == other.id
-				&& Objects.equals(modeOfPayment, other.modeOfPayment);
+		return cardNumber == other.cardNumber && Objects.equals(guestId, other.guestId) && id == other.id;
 	}
-	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getModeOfPayment() {
-		return modeOfPayment;
+	public long getCardNumber() {
+		return cardNumber;
 	}
-	public void setModeOfPayment(String modeOfPayment) {
-		this.modeOfPayment = modeOfPayment;
+	public void setCardNumber(long cardNumber) {
+		this.cardNumber = cardNumber;
 	}
-	public String getDateOfPay() {
-		return dateOfPay;
+	public Guest getGuestId() {
+		return guestId;
 	}
-	public void setDateOfPay(String dateOfPay) {
-		this.dateOfPay = dateOfPay;
+	public void setGuestId(Guest guestId) {
+		this.guestId = guestId;
 	}
-	public Guest getGuest() {
-		return guest;
-	}
-	public void setGuest(Guest guest) {
-		this.guest = guest;
-	}
+	
 	
 }
